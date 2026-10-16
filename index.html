@@ -1,0 +1,2491 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Graduate Studies | Internal Medicine - Faculty of Medicine - Benghazi University</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#0d6e5f; --primary-dark:#083f37; --primary-light:#14a08a;
+  --accent:#c8a15a; --bg:#eef4f2; --card:#ffffff; --text:#16241f;
+  --muted:#6b7d78; --border:#dde8e5; --danger:#c0392b; --warn:#d9820b;
+  --success:#1e8e5a; --info:#2b6cb0; --radius:14px;
+  --shadow:0 4px 20px rgba(13,110,95,.09);
+}
+body.dark{
+  --bg:#0f1614; --card:#16211e; --text:#e6f0ed; --muted:#9bb0ab; --border:#25352f;
+  --shadow:0 4px 20px rgba(0,0,0,.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Cairo','Segoe UI',Tahoma,sans-serif;
+  background:var(--bg); color:var(--text); min-height:100vh;
+  transition:background .3s,color .3s;
+}
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-thumb{background:#9fb8b2;border-radius:10px}
+::-webkit-scrollbar-track{background:transparent}
+
+/* ============= شاشة الترحيب ============= */
+.splash{
+  position:fixed; inset:0; z-index:9999;
+  display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(135deg,#083f37 0%,#0d6e5f 45%,#14a08a 100%);
+  overflow-y:auto; padding:20px 14px;
+  transition:opacity .6s ease, visibility .6s ease;
+}
+.splash.hide{opacity:0; visibility:hidden; pointer-events:none}
+.splash::before{
+  content:""; position:fixed; inset:0;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,255,255,.08) 0%, transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(200,161,90,.12) 0%, transparent 45%);
+  pointer-events:none;
+}
+.splash::after{
+  content:""; position:fixed; inset:0;
+  background-image:
+    radial-gradient(rgba(255,255,255,.09) 1.2px, transparent 1.2px),
+    radial-gradient(rgba(255,255,255,.06) 1.2px, transparent 1.2px);
+  background-size:38px 38px, 60px 60px;
+  background-position:0 0, 20px 20px;
+  opacity:.6; pointer-events:none;
+  animation:floatBg 30s linear infinite;
+}
+@keyframes floatBg{
+  from{background-position:0 0, 20px 20px}
+  to{background-position:38px 38px, 58px 58px}
+}
+
+/* زر إغلاق المنظومة في شاشة الترحيب */
+.splash-close{
+  position:fixed; top:20px; inset-inline-end:20px;
+  width:48px; height:48px; border-radius:50%;
+  background:rgba(255,255,255,.14); backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border:1.5px solid rgba(255,255,255,.32);
+  color:#fff; font-size:22px; font-weight:900;
+  cursor:pointer; display:grid; place-items:center;
+  z-index:10000; transition:.25s;
+  box-shadow:0 6px 18px rgba(0,0,0,.28);
+  line-height:1;
+}
+.splash-close:hover{
+  background:rgba(192,57,43,.9);
+  border-color:rgba(192,57,43,1);
+  transform:rotate(90deg) scale(1.08);
+  box-shadow:0 8px 24px rgba(192,57,43,.5);
+}
+.splash-close:active{transform:rotate(90deg) scale(.95)}
+.splash-close .tooltip{
+  position:absolute; top:100%; inset-inline-end:0;
+  margin-top:8px; padding:6px 12px;
+  background:rgba(0,0,0,.8); color:#fff;
+  font-size:12px; font-weight:700; border-radius:8px;
+  white-space:nowrap; opacity:0; pointer-events:none;
+  transition:.2s; font-family:'Cairo',sans-serif;
+}
+.splash-close:hover .tooltip{opacity:1}
+
+.splash-card{
+  position:relative; z-index:2;
+  width:min(600px, 100%);
+  background:rgba(255,255,255,.97);
+  backdrop-filter:blur(20px);
+  border-radius:26px;
+  padding:38px 30px 30px;
+  box-shadow:0 30px 80px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.5) inset;
+  text-align:center;
+  animation:splashIn .8s cubic-bezier(.2,.9,.3,1.1);
+}
+body.dark .splash-card{
+  background:rgba(22,33,30,.97);
+  box-shadow:0 30px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.06) inset;
+}
+@keyframes splashIn{
+  from{opacity:0; transform:translateY(30px) scale(.94)}
+  to{opacity:1; transform:translateY(0) scale(1)}
+}
+.splash-logo{
+  width:96px; height:96px; margin:0 auto 20px;
+  border-radius:26px;
+  background:linear-gradient(135deg,#0d6e5f,#14a08a);
+  display:grid; place-items:center;
+  font-size:48px;
+  box-shadow:0 12px 30px rgba(13,110,95,.4), 0 0 0 6px rgba(20,160,138,.15);
+  animation:pulseGlow 3s ease-in-out infinite;
+}
+@keyframes pulseGlow{
+  0%,100%{box-shadow:0 12px 30px rgba(13,110,95,.4), 0 0 0 6px rgba(20,160,138,.15)}
+  50%{box-shadow:0 12px 40px rgba(13,110,95,.55), 0 0 0 12px rgba(20,160,138,.08)}
+}
+.splash-univ{
+  font-size:24px; font-weight:900; color:#0d6e5f;
+  letter-spacing:.4px; margin-bottom:6px;
+  line-height:1.3;
+}
+body.dark .splash-univ{color:#3ecfb6}
+.splash-college{
+  font-size:19px; font-weight:800; color:#083f37;
+  margin-bottom:4px;
+}
+body.dark .splash-college{color:#c8e8e2}
+.splash-dept{
+  font-size:16px; font-weight:700; color:#6b7d78;
+  margin-bottom:22px;
+}
+body.dark .splash-dept{color:#9bb0ab}
+.splash-divider{
+  height:2px; margin:0 auto 22px;
+  width:80px;
+  background:linear-gradient(90deg,transparent,#c8a15a,transparent);
+  border-radius:2px;
+}
+.splash-badge{
+  display:inline-flex; align-items:center; gap:14px;
+  padding:14px 22px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#0d6e5f,#14a08a);
+  color:#fff;
+  box-shadow:0 10px 26px rgba(13,110,95,.35);
+  margin-bottom:24px;
+  transform:translateZ(0);
+  animation:badgeFloat 4s ease-in-out infinite;
+}
+@keyframes badgeFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-4px)}
+}
+.splash-badge .b-icon{
+  font-size:32px; line-height:1;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,.2));
+}
+.splash-badge .b-text{text-align:start}
+.splash-badge .b-title{
+  font-size:17px; font-weight:900; letter-spacing:.3px;
+  display:block; margin-bottom:3px;
+}
+.splash-badge .b-sub{
+  font-size:12.5px; font-weight:600; opacity:.92;
+  display:block;
+}
+.splash-people{
+  display:grid; gap:12px; margin-bottom:26px;
+}
+.splash-person{
+  display:flex; align-items:center; gap:13px;
+  padding:13px 16px;
+  border-radius:14px;
+  background:linear-gradient(135deg,rgba(13,110,95,.07),rgba(20,160,138,.04));
+  border:1px solid rgba(13,110,95,.14);
+  text-align:start;
+}
+body.dark .splash-person{
+  background:linear-gradient(135deg,rgba(20,160,138,.12),rgba(13,110,95,.06));
+  border-color:rgba(62,207,182,.18);
+}
+.splash-person .p-icon{
+  width:44px; height:44px; flex:0 0 auto;
+  border-radius:12px;
+  display:grid; place-items:center; font-size:22px;
+  background:linear-gradient(135deg,#c8a15a,#a8823f);
+  color:#fff;
+  box-shadow:0 4px 12px rgba(200,161,90,.35);
+}
+.splash-person .p-info{flex:1; min-width:0}
+.splash-person .p-role{
+  font-size:11.5px; font-weight:700; color:#6b7d78;
+  display:block; margin-bottom:3px;
+  line-height:1.4;
+}
+body.dark .splash-person .p-role{color:#9bb0ab}
+.splash-person .p-name{
+  font-size:14.5px; font-weight:800; color:#0d6e5f;
+  display:block; line-height:1.35;
+}
+body.dark .splash-person .p-name{color:#3ecfb6}
+.splash-person .p-sub{
+  font-size:12.5px; font-weight:600; color:#16241f;
+  display:block; margin-top:2px;
+}
+body.dark .splash-person .p-sub{color:#c8e8e2}
+.splash-enter{
+  width:100%;
+  padding:16px 24px;
+  border:0; border-radius:15px;
+  background:linear-gradient(135deg,#0d6e5f,#14a08a);
+  color:#fff;
+  font-family:inherit; font-size:16px; font-weight:900;
+  letter-spacing:.5px;
+  cursor:pointer;
+  display:inline-flex; align-items:center; justify-content:center; gap:11px;
+  box-shadow:0 12px 28px rgba(13,110,95,.42);
+  transition:transform .2s, box-shadow .2s, background .3s;
+  position:relative; overflow:hidden;
+}
+.splash-enter::before{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.2),transparent 60%);
+  opacity:0; transition:opacity .3s;
+}
+.splash-enter:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 36px rgba(13,110,95,.55);
+}
+.splash-enter:hover::before{opacity:1}
+.splash-enter:active{transform:scale(.98)}
+.splash-enter .arrow{
+  font-size:20px; font-weight:900;
+  transition:transform .3s;
+}
+.splash-enter:hover .arrow{transform:translateX(-6px)}
+[dir="ltr"] .splash-enter:hover .arrow{transform:translateX(6px)}
+.splash-footer{
+  margin-top:16px; font-size:11px;
+  color:#6b7d78; opacity:.75;
+}
+body.dark .splash-footer{color:#9bb0ab}
+
+@media(max-width:560px){
+  .splash-card{padding:28px 18px 22px; border-radius:22px}
+  .splash-logo{width:78px; height:78px; font-size:38px; border-radius:22px; margin-bottom:16px}
+  .splash-univ{font-size:19px}
+  .splash-college{font-size:16px}
+  .splash-dept{font-size:14px; margin-bottom:16px}
+  .splash-badge{padding:12px 18px; gap:11px; margin-bottom:18px}
+  .splash-badge .b-icon{font-size:26px}
+  .splash-badge .b-title{font-size:15px}
+  .splash-badge .b-sub{font-size:11.5px}
+  .splash-person{padding:11px 13px; gap:11px}
+  .splash-person .p-icon{width:38px; height:38px; font-size:19px}
+  .splash-person .p-role{font-size:10.5px}
+  .splash-person .p-name{font-size:13.5px}
+  .splash-person .p-sub{font-size:11.5px}
+  .splash-enter{padding:14px 20px; font-size:15px}
+  .splash-close{width:42px; height:42px; font-size:19px; top:14px; inset-inline-end:14px}
+}
+@media(max-height:640px){
+  .splash-card{padding:22px 18px 18px}
+  .splash-logo{width:66px; height:66px; font-size:32px; margin-bottom:12px}
+  .splash-univ{font-size:17px}
+  .splash-badge{padding:10px 16px; margin-bottom:14px}
+  .splash-people{gap:8px; margin-bottom:16px}
+  .splash-person{padding:9px 12px}
+}
+
+/* ============= التخطيط الرئيسي ============= */
+.app{display:flex; min-height:100vh}
+.sidebar{
+  width:280px; position:fixed; top:0; inset-inline-start:0; bottom:0; z-index:60;
+  background:linear-gradient(170deg,#0d6e5f 0%,#083f37 100%);
+  color:#fff; padding:18px 0; overflow-y:auto; transition:transform .3s;
+}
+.brand{display:flex;gap:12px;align-items:center;padding:6px 20px 20px;border-bottom:1px solid rgba(255,255,255,.13);margin-bottom:14px}
+.brand-logo{
+  width:46px;height:46px;border-radius:13px;background:rgba(255,255,255,.14);
+  display:grid;place-items:center;font-size:24px;flex:0 0 auto;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)
+}
+.brand h1{font-size:15px;font-weight:800;letter-spacing:.2px;line-height:1.3}
+.brand p{font-size:10.5px;color:#a9d5cb;margin-top:3px;line-height:1.4}
+.nav{display:flex;flex-direction:column;gap:3px;padding:0 12px}
+.nav-item{
+  display:flex;align-items:center;gap:11px;padding:11px 14px;border:0;border-radius:11px;
+  background:transparent;color:#cfe8e2;font-family:inherit;font-size:14px;font-weight:600;
+  cursor:pointer;text-align:start;transition:.18s;width:100%
+}
+.nav-item .ico{font-size:17px;width:22px;text-align:center}
+.nav-item:hover{background:rgba(255,255,255,.09);color:#fff}
+.nav-item.active{background:#fff;color:#0d6e5f;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.sidebar-foot{padding:18px 22px;font-size:11px;color:#8fbfb5;border-top:1px solid rgba(255,255,255,.1);margin-top:16px}
+.sidebar-exit{
+  display:flex; align-items:center; gap:10px;
+  margin:14px 12px 0;
+  padding:12px 14px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:11px;
+  background:rgba(255,255,255,.06);
+  color:#ffd9d3; font-family:inherit; font-size:13.5px; font-weight:700;
+  cursor:pointer; transition:.18s; width:calc(100% - 24px);
+  text-align:start;
+}
+.sidebar-exit:hover{background:rgba(192,57,43,.25); border-color:rgba(192,57,43,.6); color:#fff}
+.sidebar-exit:active{transform:scale(.98)}
+.sidebar-exit .ico{font-size:18px}
+
+.main{flex:1;margin-inline-start:280px;min-width:0;display:flex;flex-direction:column}
+.topbar{
+  background:var(--card);border-bottom:1px solid var(--border);
+  padding:13px 22px;display:flex;align-items:center;gap:10px;
+  position:sticky;top:0;z-index:40;box-shadow:0 2px 12px rgba(0,0,0,.04)
+}
+.topbar h2{font-size:18px;font-weight:800;flex:1}
+.menu-btn{display:none;background:none;border:0;font-size:22px;cursor:pointer;color:var(--text)}
+.badge-year{
+  background:linear-gradient(135deg,#0d6e5f,#14a08a);color:#fff;font-size:12px;font-weight:700;
+  padding:6px 14px;border-radius:20px;white-space:nowrap
+}
+.btn-download{
+  background:#0d6e5f; color:#fff; border:0; padding:9px 16px;
+  border-radius:10px; font-family:inherit; font-size:13.5px; font-weight:700;
+  cursor:pointer; display:inline-flex; align-items:center; gap:6px;
+  box-shadow:0 3px 10px rgba(13,110,95,.3); transition:.18s; white-space:nowrap;
+}
+.btn-download:hover{background:#083f37}
+.btn-download:active{transform:scale(.95)}
+.lang-btn{
+  background:var(--bg); color:var(--text); border:1px solid var(--border);
+  padding:7px 13px; border-radius:9px; font-family:inherit; font-size:12.5px;
+  font-weight:800; cursor:pointer; transition:.18s; white-space:nowrap;
+}
+.lang-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.btn-exit{
+  background:transparent; color:var(--danger); border:1px solid var(--border);
+  padding:7px 13px; border-radius:9px; font-family:inherit; font-size:12.5px;
+  font-weight:800; cursor:pointer; transition:.18s; white-space:nowrap;
+  display:inline-flex; align-items:center; gap:5px;
+}
+.btn-exit:hover{background:var(--danger);color:#fff;border-color:var(--danger)}
+.content{padding:22px;max-width:1500px;width:100%;margin:0 auto}
+
+.btn{
+  font-family:inherit;font-size:13.5px;font-weight:700;padding:9px 17px;border-radius:10px;
+  border:1px solid transparent;cursor:pointer;transition:.18s;display:inline-flex;
+  align-items:center;gap:7px;white-space:nowrap
+}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:0 3px 10px rgba(13,110,95,.28)}
+.btn-primary:hover{background:var(--primary-dark)}
+.btn-ghost{background:transparent;border-color:var(--border);color:var(--text)}
+.btn-ghost:hover{background:var(--bg);border-color:var(--primary);color:var(--primary)}
+.btn-danger{background:var(--danger);color:#fff}
+.btn-danger:hover{filter:brightness(.9)}
+.btn-warn{background:var(--warn);color:#fff}
+.btn-sm{padding:6px 12px;font-size:12.5px;border-radius:8px}
+.btn-icon{padding:6px 9px;font-size:14px;border-radius:8px;background:var(--bg);border:1px solid var(--border);cursor:pointer;color:var(--text)}
+.btn-icon:hover{border-color:var(--primary);color:var(--primary)}
+
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}
+.toolbar .spacer{flex:1}
+input,select,textarea{
+  font-family:inherit;font-size:13.5px;padding:9px 13px;border-radius:10px;
+  border:1px solid var(--border);background:var(--card);color:var(--text);outline:none;transition:.16s;width:100%
+}
+input:focus,select:focus,textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(13,110,95,.12)}
+.search-box{position:relative;min-width:240px;flex:1;max-width:380px}
+.search-box input{padding-inline-start:38px}
+.search-box::before{content:"🔍";position:absolute;inset-inline-start:13px;top:50%;transform:translateY(-50%);font-size:13px;opacity:.55}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.card-head{padding:15px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.card-head h3{font-size:15px;font-weight:800;flex:1;min-width:150px}
+.card-body{padding:18px}
+
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:15px;margin-bottom:20px}
+.stat{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:17px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  display:flex;align-items:center;gap:14px
+}
+.stat::after{content:"";position:absolute;inset-inline-start:0;top:0;bottom:0;width:4px;background:var(--c,var(--primary))}
+.stat .s-ico{
+  width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:21px;
+  background:color-mix(in srgb,var(--c,#0d6e5f) 13%,transparent);flex:0 0 auto
+}
+.stat .s-val{font-size:26px;font-weight:800;line-height:1.1;color:var(--c,var(--primary))}
+.stat .s-lbl{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:3px}
+
+.table-wrap{overflow-x:auto;border-radius:var(--radius);-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--card)}
+th{
+  background:linear-gradient(180deg,#0d6e5f,#0a564a);color:#fff;font-weight:700;
+  padding:12px 13px;text-align:start;font-size:13px;white-space:nowrap
+}
+td{padding:11px 13px;border-bottom:1px solid var(--border);vertical-align:middle;text-align:start}
+tbody tr{transition:.14s}
+tbody tr:hover{background:color-mix(in srgb,var(--primary) 6%,transparent)}
+tbody tr:last-child td{border-bottom:0}
+.empty{padding:46px 20px;text-align:center;color:var(--muted);font-size:14px}
+.empty .e-ico{font-size:42px;display:block;margin-bottom:10px;opacity:.5}
+
+.tag{
+  display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:20px;
+  font-size:11.5px;font-weight:700;white-space:nowrap
+}
+.tag-green{background:rgba(30,142,90,.13);color:#1e8e5a}
+.tag-red{background:rgba(192,57,43,.13);color:#c0392b}
+.tag-orange{background:rgba(217,130,11,.14);color:#b06d06}
+.tag-blue{background:rgba(43,108,176,.13);color:#2b6cb0}
+.tag-gray{background:rgba(120,140,135,.15);color:#5b6b67}
+.tag-gold{background:rgba(200,161,90,.18);color:#8a6a22}
+
+.progress{background:var(--bg);border-radius:20px;height:9px;overflow:hidden;min-width:80px}
+.progress i{display:block;height:100%;border-radius:20px;background:linear-gradient(90deg,#14a08a,#0d6e5f);transition:width .5s}
+
+.bar-row{display:flex;align-items:center;gap:11px;margin-bottom:11px;font-size:13px}
+.bar-row .b-lbl{width:200px;flex:0 0 auto;color:var(--muted);font-weight:600;font-size:12.5px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-row .b-track{flex:1;background:var(--bg);height:20px;border-radius:8px;overflow:hidden}
+.bar-row .b-fill{height:100%;border-radius:8px;background:linear-gradient(90deg,#14a08a,#0d6e5f);
+  display:flex;align-items:center;justify-content:flex-start;padding-inline-start:8px;
+  color:#fff;font-size:11px;font-weight:700;transition:width .6s}
+.bar-row .b-num{width:36px;text-align:center;font-weight:800;color:var(--primary);font-size:13px}
+
+.overlay{
+  position:fixed;inset:0;background:rgba(8,30,26,.55);backdrop-filter:blur(3px);
+  z-index:100;opacity:0;visibility:hidden;transition:.22s
+}
+.overlay.open{opacity:1;visibility:visible}
+.modal{
+  position:fixed;top:50%;left:50%;transform:translate(-50%,-46%) scale(.96);
+  width:min(720px,94vw);max-height:90vh;background:var(--card);border-radius:18px;
+  z-index:101;display:flex;flex-direction:column;opacity:0;visibility:hidden;
+  transition:.25s cubic-bezier(.2,.9,.3,1.2);box-shadow:0 25px 70px rgba(0,0,0,.3)
+}
+.modal.open{opacity:1;visibility:visible;transform:translate(-50%,-50%) scale(1)}
+.modal-head{
+  padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px
+}
+.modal-head h3{font-size:16.5px;font-weight:800;flex:1}
+.modal-head button{
+  background:var(--bg);border:0;width:32px;height:32px;border-radius:9px;cursor:pointer;
+  font-size:15px;color:var(--muted);transition:.16s
+}
+.modal-head button:hover{background:var(--danger);color:#fff}
+.modal-body{padding:20px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.modal-foot{padding:14px 20px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-start;flex-wrap:wrap}
+
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1/-1}
+.field label{font-size:12.5px;font-weight:700;color:var(--muted)}
+.field label .req{color:var(--danger)}
+
+.toast-wrap{position:fixed;bottom:22px;inset-inline-start:22px;inset-inline-end:22px;z-index:200;display:flex;flex-direction:column;gap:9px;pointer-events:none}
+.toast{
+  background:var(--card);border:1px solid var(--border);border-inline-start:4px solid var(--success);
+  padding:12px 18px;border-radius:11px;box-shadow:0 8px 26px rgba(0,0,0,.16);
+  font-size:13.5px;font-weight:600;animation:slideIn .3s ease
+}
+.toast.err{border-inline-start-color:var(--danger)}
+.toast.warn{border-inline-start-color:var(--warn)}
+@keyframes slideIn{from{transform:translateX(-30px);opacity:0}to{transform:translateX(0);opacity:1}}
+
+.profile-head{
+  background:linear-gradient(135deg,#0d6e5f,#14a08a);color:#fff;border-radius:14px;
+  padding:20px;display:flex;gap:16px;align-items:center;margin-bottom:16px;flex-wrap:wrap
+}
+.profile-avatar{
+  width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.2);
+  display:grid;place-items:center;font-size:26px;font-weight:800;flex:0 0 auto
+}
+.profile-head h3{font-size:18px;font-weight:800}
+.profile-head p{font-size:12.5px;opacity:.9;margin-top:3px}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:16px}
+.info-item{background:var(--bg);padding:11px 14px;border-radius:10px}
+.info-item span{display:block;font-size:11.5px;color:var(--muted);font-weight:600;margin-bottom:3px}
+.info-item b{font-size:13.5px;font-weight:700;word-break:break-word}
+
+@media(max-width:980px){
+  .sidebar{transform:translateX(100%)}
+  [dir="ltr"] .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0) !important}
+  .main{margin-inline-start:0}
+  .menu-btn{display:block}
+  .form-grid{grid-template-columns:1fr}
+  .bar-row .b-lbl{width:130px}
+}
+@media(max-width:560px){
+  .content{padding:12px}
+  .topbar{padding:10px 12px;gap:5px}
+  .topbar h2{font-size:13.5px}
+  .badge-year{display:none}
+  .btn-download{padding:8px 10px;font-size:12px}
+  .btn-download span.dl-text{display:none}
+  .lang-btn{padding:7px 9px;font-size:11px}
+  .btn-exit{padding:7px 9px;font-size:12px}
+  .btn-exit .exit-text{display:none}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .stat{padding:13px;gap:10px}
+  .stat .s-ico{width:38px;height:38px;font-size:17px}
+  .stat .s-val{font-size:20px}
+  .stat .s-lbl{font-size:11px}
+  .card-head{padding:12px 14px}
+  .card-body{padding:14px}
+  table{font-size:12.5px}
+  th,td{padding:9px 10px}
+  .profile-head{padding:15px}
+  .profile-avatar{width:52px;height:52px;font-size:22px}
+  .profile-head h3{font-size:16px}
+  .modal-body{padding:15px}
+  .modal-foot{padding:12px 15px}
+  .bar-row .b-lbl{width:100px;font-size:11.5px}
+}
+@media(max-width:380px){
+  .stats-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ شاشة الترحيب ============ -->
+<div class="splash" id="splash">
+  <button class="splash-close" onclick="closeSystem()" id="splashCloseBtn" type="button">
+    ✕<span class="tooltip" id="splashCloseTooltip">إغلاق المنظومة</span>
+  </button>
+
+  <div class="splash-card">
+    <div class="splash-logo">⚕️</div>
+    <h1 class="splash-univ" id="splashUniv">جامعة بنغازي</h1>
+    <h2 class="splash-college" id="splashCollege">كلية الطب</h2>
+    <h3 class="splash-dept" id="splashDept">قسم الباطنة</h3>
+
+    <div class="splash-divider"></div>
+
+    <div class="splash-badge">
+      <span class="b-icon">🎓</span>
+      <div class="b-text">
+        <span class="b-title" id="splashProgramTitle">الدراسات العليا</span>
+        <span class="b-sub" id="splashProgramSub">ماجستير الباطنة</span>
+      </div>
+    </div>
+
+    <div class="splash-people">
+      <div class="splash-person">
+        <span class="p-icon">👤</span>
+        <div class="p-info">
+          <span class="p-role" id="splashHeadLabel">رئيس مكتب الدراسات العليا قسم الباطنة</span>
+          <span class="p-name" id="splashHeadName">د. امحمد الجازوي</span>
+        </div>
+      </div>
+      <div class="splash-person">
+        <span class="p-icon">💻</span>
+        <div class="p-info">
+          <span class="p-role" id="splashDesignerLabel">مصمم المنظومة</span>
+          <span class="p-sub" id="splashDesignerRole">رئيس قسم الدراسة والامتحانات بالكلية</span>
+          <span class="p-name" id="splashDesignerName">د. صالح الاوجلي</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="splash-enter" onclick="enterSystem()">
+      <span id="splashEnterText">الدخول إلى المنظومة</span>
+      <span class="arrow">←</span>
+    </button>
+    <div class="splash-footer" id="splashFooter">نظام إدارة طلبة الدراسات العليا</div>
+  </div>
+</div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-logo">🩺</div>
+      <div>
+        <h1 id="brandTitle">الدراسات العليا</h1>
+        <p id="brandSubtitle">قسم الباطنة العامة · كلية الطب</p>
+      </div>
+    </div>
+    <nav class="nav" id="nav">
+      <button class="nav-item active" data-view="dashboard"><span class="ico">📊</span> <span data-i18n="menuDashboard"></span></button>
+      <button class="nav-item" data-view="students"><span class="ico">🎓</span> <span data-i18n="menuStudents"></span></button>
+      <button class="nav-item" data-view="courses"><span class="ico">📚</span> <span data-i18n="menuCourses"></span></button>
+      <button class="nav-item" data-view="grades"><span class="ico">📝</span> <span data-i18n="menuGrades"></span></button>
+      <button class="nav-item" data-view="thesis"><span class="ico">📄</span> <span data-i18n="menuThesis"></span></button>
+      <button class="nav-item" data-view="supervisors"><span class="ico">👨‍🏫</span> <span data-i18n="menuSupervisors"></span></button>
+      <button class="nav-item" data-view="reports"><span class="ico">📈</span> <span data-i18n="menuReports"></span></button>
+      <button class="nav-item" data-view="settings"><span class="ico">⚙️</span> <span data-i18n="menuSettings"></span></button>
+    </nav>
+
+    <button class="sidebar-exit" onclick="exitToSplash()" type="button">
+      <span class="ico">🚪</span>
+      <span id="sidebarExitText" data-i18n="exitToSplash">الخروج إلى الواجهة</span>
+    </button>
+
+    <div class="sidebar-foot">
+      <p id="sidebarFoot1">باطنة عامة - دراسات عليا</p>
+      <p style="margin-top:4px" id="sidebarFoot2">الإصدار 1.0</p>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+      <h2 id="pageTitle">لوحة التحكم</h2>
+      <span class="badge-year" id="yearBadge"></span>
+      <button class="lang-btn" onclick="toggleLang()" id="langBtn">English</button>
+      <button class="btn-download" onclick="downloadSystem()" id="downloadBtn">
+        ⬇️<span class="dl-text" data-i18n="downloadText"> تحميل</span>
+      </button>
+      <button class="btn-icon" onclick="toggleTheme()" id="themeBtn" title="Theme">🌓</button>
+      <button class="btn-exit" onclick="exitToSplash()" id="exitBtn" title="الخروج إلى الواجهة">
+        🚪<span class="exit-text" data-i18n="exitShort"> خروج</span>
+      </button>
+    </header>
+    <div class="content" id="content"></div>
+  </main>
+</div>
+
+<div class="overlay" id="overlay" onclick="closeModal()"></div>
+<div class="modal" id="modal">
+  <div class="modal-head">
+    <h3 id="modalTitle"></h3>
+    <button onclick="closeModal()">✕</button>
+  </div>
+  <div class="modal-body" id="modalBody"></div>
+  <div class="modal-foot" id="modalFoot"></div>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script>
+/* ==========================================================================
+   Graduate Studies System - Internal Medicine Department
+   Faculty of Medicine - Benghazi University
+   Bilingual (Arabic / English) - With Splash + Exit + Close
+   ========================================================================== */
+
+const DEPARTMENTS = [
+  {ar:'أمراض القلب والأوعية الدموية', en:'Cardiology & Vascular Diseases'},
+  {ar:'أمراض الصدر والجهاز التنفسي', en:'Pulmonology & Respiratory'},
+  {ar:'أمراض الدم', en:'Hematology'},
+  {ar:'أمراض الجهاز الهضمي والكبد', en:'Gastroenterology & Hepatology'},
+  {ar:'أمراض الغدد الصماء والسكري', en:'Endocrinology & Diabetes'},
+  {ar:'أمراض الكلى وضغط الدم', en:'Nephrology & Hypertension'},
+  {ar:'الأمراض الروماتيزمية والمناعة', en:'Rheumatology & Immunology'},
+  {ar:'الأمراض المعدية', en:'Infectious Diseases'},
+  {ar:'الأورام الطبية', en:'Medical Oncology'},
+  {ar:'أمراض الأعصاب', en:'Neurology'},
+  {ar:'طب الشيخوخة', en:'Geriatric Medicine'},
+  {ar:'العناية المركزة والحالات الحرجة', en:'Intensive Care & Critical Cases'},
+  {ar:'السموم والطوارئ الباطنية', en:'Toxicology & Medical Emergencies'}
+];
+
+const STATUS_LIST = [
+  {val:'نشط', ar:'نشط', en:'Active', cls:'tag-green'},
+  {val:'متوقف', ar:'متوقف', en:'Suspended', cls:'tag-orange'},
+  {val:'متخرج', ar:'متخرج', en:'Graduated', cls:'tag-blue'},
+  {val:'منسحب', ar:'منسحب', en:'Withdrawn', cls:'tag-red'}
+];
+
+const STAGE_LIST = [
+  {val:'تسجيل المقترح', ar:'تسجيل المقترح', en:'Proposal Registration', progress:10},
+  {val:'إقرار الخطة', ar:'إقرار الخطة', en:'Protocol Approval', progress:25},
+  {val:'جمع البيانات', ar:'جمع البيانات', en:'Data Collection', progress:40},
+  {val:'تحليل البيانات', ar:'تحليل البيانات', en:'Data Analysis', progress:55},
+  {val:'كتابة الرسالة', ar:'كتابة الرسالة', en:'Thesis Writing', progress:70},
+  {val:'التقديم للمناقشة', ar:'التقديم للمناقشة', en:'Defense Submission', progress:85},
+  {val:'تمت المناقشة', ar:'تمت المناقشة', en:'Defended', progress:100}
+];
+
+const DEGREE_LIST = [
+  {val:'ماجستير في الطب الباطني', ar:'ماجستير في الطب الباطني', en:'MSc in Internal Medicine'},
+  {val:'ماجستير مهني في الباطنة', ar:'ماجستير مهني في الباطنة', en:'Professional MSc in Internal Medicine'},
+  {val:'دكتوراه في الطب الباطني', ar:'دكتوراه في الطب الباطني', en:'PhD in Internal Medicine'}
+];
+
+const SEMESTER_LIST = [
+  {val:'خريف', ar:'خريف', en:'Fall'},
+  {val:'ربيع', ar:'ربيع', en:'Spring'},
+  {val:'صيف', ar:'صيف', en:'Summer'}
+];
+
+const TYPE_LIST = [
+  {val:'إجباري', ar:'إجباري', en:'Compulsory'},
+  {val:'اختياري', ar:'اختياري', en:'Elective'}
+];
+
+const TITLE_LIST = [
+  {val:'أ.د.', ar:'أ.د.', en:'Prof. Dr.'},
+  {val:'د.', ar:'د.', en:'Dr.'},
+  {val:'أستاذ مشارك', ar:'أستاذ مشارك', en:'Assoc. Prof.'},
+  {val:'أستاذ مساعد', ar:'أستاذ مساعد', en:'Asst. Prof.'},
+  {val:'محاضر', ar:'محاضر', en:'Lecturer'}
+];
+
+const THESIS_STATUS_LIST = [
+  {val:'قيد التنفيذ', ar:'قيد التنفيذ', en:'In Progress'},
+  {val:'قيد المراجعة', ar:'قيد المراجعة', en:'Under Review'},
+  {val:'معتمدة', ar:'معتمدة', en:'Approved'},
+  {val:'مؤجلة', ar:'مؤجلة', en:'Postponed'}
+];
+
+const GRADE_SCALE = [
+  {g:'A', pts:4.0}, {g:'A-', pts:3.7}, {g:'B+', pts:3.3}, {g:'B', pts:3.0},
+  {g:'B-', pts:2.7}, {g:'C+', pts:2.3}, {g:'C', pts:2.0}, {g:'D', pts:1.0},
+  {g:'F', pts:0.0}
+];
+
+const I18N = {
+  ar: {
+    brandTitle:'الدراسات العليا', brandSubtitle:'قسم الباطنة العامة · كلية الطب',
+    sidebarFoot1:'باطنة عامة - دراسات عليا', sidebarFoot2:'الإصدار 1.0',
+    menuDashboard:'لوحة التحكم', menuStudents:'الطلبة', menuCourses:'المقررات',
+    menuGrades:'الدرجات والمعدلات', menuThesis:'الرسائل العلمية', menuSupervisors:'المشرفون',
+    menuReports:'التقارير', menuSettings:'الإعدادات',
+    yearBadge:'العام الجامعي', downloadText:' تحميل',
+    exitShort:' خروج',
+    exitToSplash:'الخروج إلى الواجهة',
+    titleDashboard:'لوحة التحكم', titleStudents:'سجل الطلبة', titleCourses:'المقررات الدراسية',
+    titleGrades:'الدرجات والمعدلات', titleThesis:'الرسائل العلمية', titleSupervisors:'المشرفون',
+    titleReports:'التقارير والإحصاءات', titleSettings:'إعدادات المنظومة',
+    statTotalStudents:'إجمالي الطلبة', statActive:'الطلبة النشطون', statGraduated:'الخريجون',
+    statStopped:'متوقفون', statBranches:'فروع الباطنة', statAvgGpa:'متوسط المعدل التراكمي',
+    chartDeptDist:'توزيع الطلبة على فروع الباطنة', chartStages:'مراحل الرسائل العلمية',
+    recentStudents:'أحدث الطلبة المسجلين', viewAll:'عرض الكل', noData:'لا توجد بيانات',
+    noStudents:'لا يوجد طلبة مسجلون بعد',
+    thReg:'الرقم الجامعي', thName:'الاسم الكامل', thBranch:'الفرع', thProgram:'البرنامج',
+    thYear:'العام', thSupervisor:'المشرف', thGpa:'المعدل', thStatus:'الحالة', thActions:'إجراءات',
+    thCount:'#', thEmail:'البريد', thPhone:'الهاتف', thStudents:'الطلبة',
+    thSpecialty:'التخصص الدقيق', thDegreeCol:'الدرجة',
+    thCode:'رمز المقرر', thCourseName:'اسم المقرر', thCredits:'الساعات',
+    thType:'النوع', thSemester:'الفصل',
+    thThesisTitle:'عنوان الرسالة', thCommittee:'المشرف/اللجنة', thStage:'المرحلة', thProgress:'نسبة الإنجاز',
+    thHoursCol:'الساعات', thGradeCol:'التقدير', thPoints:'النقاط',
+    btnAddStudent:'＋ إضافة طالب', btnAddCourse:'＋ إضافة مقرر', btnAddThesis:'＋ تسجيل رسالة',
+    btnAddSupervisor:'＋ إضافة مشرف', btnAddGrade:'＋ إضافة درجة',
+    btnSave:'💾 حفظ', btnCancel:'إلغاء', btnPrint:'🖨️ طباعة', btnPrintProfile:'🖨️ طباعة',
+    btnClose:'إغلاق', btnExportCsv:'⬇️ CSV', btnExportCsvShort:'⬇️ تصدير CSV',
+    btnDownloadSystem:'⬇️ تحميل المنظومة كملف مستقل مع البيانات',
+    btnExportJson:'⬇️ تصدير نسخة احتياطية (JSON)',
+    btnImportJson:'⬆️ استيراد نسخة احتياطية',
+    btnExportAllCsv:'📊 تصدير كل البيانات (CSV)',
+    btnResetData:'🔄 إعادة تعيين البيانات التجريبية',
+    btnClearAll:'🗑️ حذف جميع البيانات',
+    btnSaveSettings:'💾 حفظ الإعدادات',
+    filterAllBranches:'كل فروع الباطنة', filterAllStatuses:'كل الحالات', filterAllYears:'كل الأعوام',
+    searchStudents:'ابحث بالاسم أو الرقم الجامعي أو الهاتف...',
+    searchCourses:'ابحث في المقررات...',
+    searchThesis:'ابحث بعنوان الرسالة أو اسم الطالب...',
+    fReg:'الرقم الجامعي', fName:'الاسم الكامل', fNid:'الرقم الوطني', fGender:'الجنس',
+    fMale:'ذكر', fFemale:'أنثى', fDob:'تاريخ الميلاد', fPhone:'رقم الهاتف', fEmail:'البريد الإلكتروني',
+    fBranch:'فرع الباطنة', fProgram:'البرنامج', fYear:'العام الجامعي', fSupervisor:'المشرف الرئيسي',
+    fNotSet:'— غير محدد —', fStatus:'الحالة', fNotes:'ملاحظات',
+    fCode:'رمز المقرر', fCourseName:'اسم المقرر', fDept:'الفرع', fGeneralDept:'عام (لجميع فروع الباطنة)',
+    fCredits:'الساعات المعتمدة', fType:'نوع المقرر', fSemester:'الفصل الدراسي',
+    fThesisStudent:'الطالب', fSelectStudent:'— اختر الطالب —',
+    fThesisTitleAr:'عنوان الرسالة (بالعربية)', fThesisTitleEn:'عنوان الرسالة (بالإنجليزية)',
+    fStage:'مرحلة الإنجاز', fProgress:'نسبة الإنجاز (%)', fStartDate:'تاريخ التسجيل',
+    fProtocolDate:'تاريخ إقرار الخطة', fDefenseDate:'تاريخ المناقشة', fThesisStatus:'حالة الرسالة',
+    fCommittee:'لجنة الإشراف / المناقشة',
+    fSupTitle:'الدرجة العلمية', fSupName:'الاسم الكامل', fSupSpecialty:'التخصص الدقيق',
+    fSupMax:'الحد الأقصى للطلبة',
+    fGradeStudent:'الطالب', fGradeCourse:'المقرر', fGradeLetter:'التقدير', fGradePoints:'النقاط (تلقائي)',
+    fUniv:'الجامعة', fCollege:'الكلية', fAdmin:'الإدارة / القسم', fCurrentYear:'العام الجامعي الحالي',
+    mAddStudent:'إضافة طالب جديد', mEditStudent:'تعديل بيانات الطالب',
+    mAddCourse:'إضافة مقرر جديد', mEditCourse:'تعديل المقرر',
+    mAddThesis:'تسجيل رسالة علمية', mEditThesis:'تعديل بيانات الرسالة',
+    mAddSupervisor:'إضافة مشرف جديد', mEditSupervisor:'تعديل بيانات المشرف',
+    mAddGrade:'إضافة درجة', mEditGrade:'تعديل الدرجة',
+    mStudentProfile:'ملف الطالب',
+    infoNid:'الرقم الوطني', infoGender:'الجنس', infoDob:'تاريخ الميلاد', infoPhone:'الهاتف',
+    infoEmail:'البريد الإلكتروني', infoSupervisor:'المشرف', infoGpa:'المعدل التراكمي',
+    infoHours:'الساعات المكتسبة', infoHoursSuffix:'ساعة', infoCoursesSuffix:'مقرر',
+    infoCoursesGrades:'📚 المقررات والدرجات', infoThesis:'📄 الرسالة العلمية',
+    infoThesisTitle:'عنوان الرسالة', infoStage:'المرحلة', infoProgress:'نسبة الإنجاز',
+    cardStudentLog:'سجل الطلبة', cardCoursesLog:'المقررات الدراسية',
+    cardThesisLog:'سجل الرسائل العلمية', cardSupervisorsLog:'هيئة الإشراف - قسم الباطنة العامة',
+    cardDetailedReport:'تقرير تفصيلي - قسم الباطنة العامة',
+    cardInstitution:'🏛️ بيانات المؤسسة', cardBackup:'💾 النسخ الاحتياطي والبيانات',
+    cardAbout:'ℹ️ عن المنظومة', cardStudentGrades:'سجل الدرجات',
+    cardTranscript:'🖨️ كشف الدرجات',
+    settingsInfo:'يتم حفظ جميع البيانات محلياً في متصفحك. يمكنك تحميل المنظومة كملف مستقل مع بياناتك، أو تصدير نسخة بصيغة JSON أو CSV.',
+    infoStudentCount:'عدد الطلبة', infoCourseCount:'عدد المقررات', infoGradeCount:'عدد الدرجات',
+    infoThesisCount:'عدد الرسائل', infoSupervisorCount:'عدد المشرفين', infoDataSize:'حجم البيانات',
+    repStudentsCount:'عدد الطلبة', repActive:'نشط', repGraduated:'متخرج', repAvgGpa:'متوسط المعدل',
+    tDeleted:'تم الحذف', tFillRequired:'يرجى إكمال الحقول المطلوبة',
+    tDupReg:'الرقم الجامعي مستخدم مسبقاً', tDupCode:'رمز المقرر مستخدم مسبقاً',
+    tDupGrade:'هذه الدرجة مسجلة مسبقاً لهذا المقرر',
+    tDupThesis:'يوجد رسالة مسجلة لهذا الطالب مسبقاً',
+    tSelectStudent:'يرجى اختيار الطالب',
+    tStudentAdded:'تمت إضافة الطالب بنجاح', tStudentUpdated:'تم تحديث بيانات الطالب بنجاح',
+    tCourseAdded:'تمت إضافة المقرر', tCourseUpdated:'تم تحديث المقرر',
+    tThesisAdded:'تم تسجيل الرسالة', tThesisUpdated:'تم تحديث بيانات الرسالة',
+    tSupervisorAdded:'تمت إضافة المشرف', tSupervisorUpdated:'تم تحديث بيانات المشرف',
+    tGradeAdded:'تمت إضافة الدرجة', tGradeUpdated:'تم تحديث الدرجة',
+    tSettingsSaved:'تم حفظ الإعدادات', tDownloaded:'✅ تم تحميل المنظومة مع بياناتك الحالية',
+    tDownloadFail:'فشل التحميل', tExportJson:'تم تصدير النسخة الاحتياطية',
+    tExportCsv:'تم تصدير ملف CSV', tImportSuccess:'تم استيراد البيانات بنجاح',
+    tImportFail:'فشل استيراد الملف', tInvalidFile:'ملف غير صالح',
+    tResetConfirm:'سيتم استبدال البيانات الحالية بالبيانات التجريبية. متابعة؟',
+    tResetDone:'تم إعادة التعيين للبيانات التجريبية',
+    tClearConfirm1:'تحذير: سيتم حذف جميع البيانات نهائياً. هل أنت متأكد؟',
+    tClearConfirm2:'تأكيد أخير: لا يمكن التراجع عن هذه العملية!',
+    tClearDone:'تم حذف جميع البيانات',
+    tConfirmDeleteStudent:'هل أنت متأكد من حذف الطالب',
+    tConfirmDeleteCourse:'حذف المقرر',
+    tConfirmDeleteThesis:'حذف هذه الرسالة؟',
+    tConfirmDeleteSupervisor:'حذف المشرف',
+    tConfirmDeleteGrade:'حذف هذه الدرجة؟',
+    tConfirmImport:'سيتم استبدال جميع البيانات الحالية. متابعة؟',
+    tDeleteGradesThesis:'سيتم حذف درجاته ورسالته أيضاً.',
+    tDeleteCourseGrades:'سيتم حذف الدرجات المرتبطة به.',
+    tUnivFallback:'جامعة بنغازي', tCollegeFallback:'كلية الطب',
+    tDeptFallback:'قسم الباطنة العامة - الدراسات العليا', tYearFallback:'2025/2026',
+    tPrintBlocked:'يرجى السماح بالنوافذ المنبثقة للطباعة',
+    tLocalSaveFail:'تعذّر حفظ البيانات محلياً',
+    tNoResults:'لا توجد نتائج مطابقة',
+    tNoGrades:'لا توجد درجات مسجلة',
+    tNoCourses:'لا توجد مقررات',
+    tNoThesis:'لا توجد رسائل مسجلة',
+    tNoSupervisors:'لا يوجد مشرفون',
+    tSelectStudentForGrades:'اختر طالباً لعرض درجاته',
+    tNoMatching:'لا توجد بيانات مطابقة للمعايير',
+    pStudentFile:'ملف طالب دراسات عليا', pName:'الاسم', pReg:'الرقم الجامعي', pBranch:'الفرع',
+    pProgram:'البرنامج', pYear:'العام الجامعي', pStatus:'الحالة', pSupervisor:'المشرف',
+    pPhone:'الهاتف', pGpa:'المعدل التراكمي', pHoursAcquired:'الساعات المكتسبة',
+    pCoursesGrades:'المقررات والدرجات', pThesisScientific:'الرسالة العلمية',
+    pTitle:'العنوان', pStage:'المرحلة', pProgressText:'نسبة الإنجاز',
+    pPrintedOn:'طُبع بتاريخ', pSysName:'منظومة الباطنة العامة',
+    pTranscript:'كشف الدرجات الرسمي', pStudentName:'اسم الطالب',
+    pTotalHours:'الساعات المكتسبة', pCumGpa:'المعدل التراكمي',
+    pDeptHead:'رئيس قسم الباطنة', pDean:'عميد الكلية',
+    pReport:'تقرير طلبة الباطنة العامة', pReportBranch:'الفرع',
+    pPrintDate:'تاريخ الطباعة', pTotalStudents:'إجمالي عدد الطلبة',
+    /* شاشة الترحيب */
+    splashUniv:'جامعة بنغازي',
+    splashCollege:'كلية الطب',
+    splashDept:'قسم الباطنة',
+    splashProgramTitle:'الدراسات العليا',
+    splashProgramSub:'ماجستير الباطنة',
+    splashHeadLabel:'رئيس مكتب الدراسات العليا قسم الباطنة',
+    splashHeadName:'د. امحمد الجازوي',
+    splashDesignerLabel:'مصمم المنظومة',
+    splashDesignerRole:'رئيس قسم الدراسة والامتحانات بالكلية',
+    splashDesignerName:'د. صالح الاوجلي',
+    splashEnter:'الدخول إلى المنظومة',
+    splashFooter:'نظام إدارة طلبة الدراسات العليا',
+    /* أزرار الخروج والإغلاق */
+    splashCloseTooltip:'إغلاق المنظومة',
+    confirmExit:'هل تريد الخروج إلى الواجهة الرئيسية؟\nسيتم حفظ بياناتك تلقائياً.',
+    confirmClose:'هل تريد إغلاق المنظومة نهائياً؟',
+    closeMessage:'شكراً لاستخدامك المنظومة.\nيمكنك الآن إغلاق التبويب يدوياً.',
+    exitDone:'تم الخروج إلى الواجهة الرئيسية'
+  },
+  en: {
+    brandTitle:'Graduate Studies', brandSubtitle:'Internal Medicine Dept. · Faculty of Medicine',
+    sidebarFoot1:'Internal Medicine - Grad Studies', sidebarFoot2:'Version 1.0',
+    menuDashboard:'Dashboard', menuStudents:'Students', menuCourses:'Courses',
+    menuGrades:'Grades & GPA', menuThesis:'Theses', menuSupervisors:'Supervisors',
+    menuReports:'Reports', menuSettings:'Settings',
+    yearBadge:'Academic Year', downloadText:' Download',
+    exitShort:' Exit',
+    exitToSplash:'Exit to Welcome Screen',
+    titleDashboard:'Dashboard', titleStudents:'Students Log', titleCourses:'Courses',
+    titleGrades:'Grades & GPA', titleThesis:'Theses', titleSupervisors:'Supervisors',
+    titleReports:'Reports & Statistics', titleSettings:'System Settings',
+    statTotalStudents:'Total Students', statActive:'Active Students', statGraduated:'Graduated',
+    statStopped:'Suspended', statBranches:'IM Branches', statAvgGpa:'Average GPA',
+    chartDeptDist:'Distribution of Students by Branch', chartStages:'Thesis Stages',
+    recentStudents:'Recent Registered Students', viewAll:'View All', noData:'No data',
+    noStudents:'No students registered yet',
+    thReg:'Reg. No.', thName:'Full Name', thBranch:'Branch', thProgram:'Program',
+    thYear:'Year', thSupervisor:'Supervisor', thGpa:'GPA', thStatus:'Status', thActions:'Actions',
+    thCount:'#', thEmail:'Email', thPhone:'Phone', thStudents:'Students',
+    thSpecialty:'Subspecialty', thDegreeCol:'Title',
+    thCode:'Code', thCourseName:'Course Name', thCredits:'Credits',
+    thType:'Type', thSemester:'Semester',
+    thThesisTitle:'Thesis Title', thCommittee:'Supervisor/Committee', thStage:'Stage', thProgress:'Progress',
+    thHoursCol:'Hours', thGradeCol:'Grade', thPoints:'Points',
+    btnAddStudent:'＋ Add Student', btnAddCourse:'＋ Add Course', btnAddThesis:'＋ New Thesis',
+    btnAddSupervisor:'＋ Add Supervisor', btnAddGrade:'＋ Add Grade',
+    btnSave:'💾 Save', btnCancel:'Cancel', btnPrint:'🖨️ Print', btnPrintProfile:'🖨️ Print',
+    btnClose:'Close', btnExportCsv:'⬇️ CSV', btnExportCsvShort:'⬇️ Export CSV',
+    btnDownloadSystem:'⬇️ Download System as Standalone File with Data',
+    btnExportJson:'⬇️ Export Backup (JSON)',
+    btnImportJson:'⬆️ Import Backup',
+    btnExportAllCsv:'📊 Export All Data (CSV)',
+    btnResetData:'🔄 Reset to Sample Data',
+    btnClearAll:'🗑️ Delete All Data',
+    btnSaveSettings:'💾 Save Settings',
+    filterAllBranches:'All IM Branches', filterAllStatuses:'All Statuses', filterAllYears:'All Years',
+    searchStudents:'Search by name, reg. number or phone...',
+    searchCourses:'Search courses...',
+    searchThesis:'Search by thesis title or student name...',
+    fReg:'Registration No.', fName:'Full Name', fNid:'National ID', fGender:'Gender',
+    fMale:'Male', fFemale:'Female', fDob:'Date of Birth', fPhone:'Phone Number', fEmail:'Email Address',
+    fBranch:'IM Branch', fProgram:'Program', fYear:'Academic Year', fSupervisor:'Main Supervisor',
+    fNotSet:'— Not Set —', fStatus:'Status', fNotes:'Notes',
+    fCode:'Course Code', fCourseName:'Course Name', fDept:'Branch', fGeneralDept:'General (all IM branches)',
+    fCredits:'Credit Hours', fType:'Course Type', fSemester:'Semester',
+    fThesisStudent:'Student', fSelectStudent:'— Select Student —',
+    fThesisTitleAr:'Thesis Title (Arabic)', fThesisTitleEn:'Thesis Title (English)',
+    fStage:'Stage', fProgress:'Progress (%)', fStartDate:'Registration Date',
+    fProtocolDate:'Protocol Approval Date', fDefenseDate:'Defense Date', fThesisStatus:'Thesis Status',
+    fCommittee:'Supervision / Defense Committee',
+    fSupTitle:'Academic Title', fSupName:'Full Name', fSupSpecialty:'Subspecialty',
+    fSupMax:'Max Students',
+    fGradeStudent:'Student', fGradeCourse:'Course', fGradeLetter:'Grade', fGradePoints:'Points (auto)',
+    fUniv:'University', fCollege:'Faculty', fAdmin:'Administration / Department', fCurrentYear:'Current Academic Year',
+    mAddStudent:'Add New Student', mEditStudent:'Edit Student',
+    mAddCourse:'Add New Course', mEditCourse:'Edit Course',
+    mAddThesis:'Register Thesis', mEditThesis:'Edit Thesis',
+    mAddSupervisor:'Add New Supervisor', mEditSupervisor:'Edit Supervisor',
+    mAddGrade:'Add Grade', mEditGrade:'Edit Grade',
+    mStudentProfile:'Student Profile',
+    infoNid:'National ID', infoGender:'Gender', infoDob:'Date of Birth', infoPhone:'Phone',
+    infoEmail:'Email', infoSupervisor:'Supervisor', infoGpa:'GPA',
+    infoHours:'Earned Hours', infoHoursSuffix:'hours', infoCoursesSuffix:'courses',
+    infoCoursesGrades:'📚 Courses & Grades', infoThesis:'📄 Thesis',
+    infoThesisTitle:'Thesis Title', infoStage:'Stage', infoProgress:'Progress',
+    cardStudentLog:'Students Log', cardCoursesLog:'Courses',
+    cardThesisLog:'Theses Log', cardSupervisorsLog:'Supervisors - Internal Medicine',
+    cardDetailedReport:'Detailed Report - Internal Medicine',
+    cardInstitution:'🏛️ Institution Details', cardBackup:'💾 Backup & Data',
+    cardAbout:'ℹ️ About System', cardStudentGrades:'Grades Log',
+    cardTranscript:'🖨️ Transcript',
+    settingsInfo:'All data is saved locally in your browser. You can download the system as a standalone file with your data, or export a backup in JSON or CSV format.',
+    infoStudentCount:'Students', infoCourseCount:'Courses', infoGradeCount:'Grades',
+    infoThesisCount:'Theses', infoSupervisorCount:'Supervisors', infoDataSize:'Data Size',
+    repStudentsCount:'Students', repActive:'Active', repGraduated:'Graduated', repAvgGpa:'Avg. GPA',
+    tDeleted:'Deleted', tFillRequired:'Please fill required fields',
+    tDupReg:'Registration number already in use', tDupCode:'Course code already in use',
+    tDupGrade:'Grade already registered for this course',
+    tDupThesis:'A thesis is already registered for this student',
+    tSelectStudent:'Please select a student',
+    tStudentAdded:'Student added successfully', tStudentUpdated:'Student updated successfully',
+    tCourseAdded:'Course added', tCourseUpdated:'Course updated',
+    tThesisAdded:'Thesis registered', tThesisUpdated:'Thesis updated',
+    tSupervisorAdded:'Supervisor added', tSupervisorUpdated:'Supervisor updated',
+    tGradeAdded:'Grade added', tGradeUpdated:'Grade updated',
+    tSettingsSaved:'Settings saved', tDownloaded:'✅ System downloaded with current data',
+    tDownloadFail:'Download failed', tExportJson:'Backup exported',
+    tExportCsv:'CSV file exported', tImportSuccess:'Data imported successfully',
+    tImportFail:'Import failed', tInvalidFile:'Invalid file',
+    tResetConfirm:'Current data will be replaced with sample data. Continue?',
+    tResetDone:'Reset to sample data',
+    tClearConfirm1:'Warning: All data will be permanently deleted. Are you sure?',
+    tClearConfirm2:'Final confirmation: This action cannot be undone!',
+    tClearDone:'All data deleted',
+    tConfirmDeleteStudent:'Are you sure you want to delete student',
+    tConfirmDeleteCourse:'Delete course',
+    tConfirmDeleteThesis:'Delete this thesis?',
+    tConfirmDeleteSupervisor:'Delete supervisor',
+    tConfirmDeleteGrade:'Delete this grade?',
+    tConfirmImport:'All current data will be replaced. Continue?',
+    tDeleteGradesThesis:'Grades and thesis will also be deleted.',
+    tDeleteCourseGrades:'Related grades will also be deleted.',
+    tUnivFallback:'University of Benghazi', tCollegeFallback:'Faculty of Medicine',
+    tDeptFallback:'Internal Medicine Department - Graduate Studies', tYearFallback:'2025/2026',
+    tPrintBlocked:'Please allow popups for printing',
+    tLocalSaveFail:'Failed to save data locally',
+    tNoResults:'No matching results',
+    tNoGrades:'No grades recorded',
+    tNoCourses:'No courses',
+    tNoThesis:'No theses registered',
+    tNoSupervisors:'No supervisors',
+    tSelectStudentForGrades:'Select a student to view grades',
+    tNoMatching:'No data matching criteria',
+    pStudentFile:'Graduate Student File', pName:'Name', pReg:'Reg. Number', pBranch:'Branch',
+    pProgram:'Program', pYear:'Academic Year', pStatus:'Status', pSupervisor:'Supervisor',
+    pPhone:'Phone', pGpa:'GPA', pHoursAcquired:'Earned Hours',
+    pCoursesGrades:'Courses & Grades', pThesisScientific:'Thesis',
+    pTitle:'Title', pStage:'Stage', pProgressText:'Progress',
+    pPrintedOn:'Printed on', pSysName:'Internal Medicine System',
+    pTranscript:'Official Transcript', pStudentName:'Student Name',
+    pTotalHours:'Earned Hours', pCumGpa:'Cumulative GPA',
+    pDeptHead:'Head of Department', pDean:'Dean of Faculty',
+    pReport:'Internal Medicine Students Report', pReportBranch:'Branch',
+    pPrintDate:'Print Date', pTotalStudents:'Total Students',
+    /* Splash */
+    splashUniv:'University of Benghazi',
+    splashCollege:'Faculty of Medicine',
+    splashDept:'Department of Internal Medicine',
+    splashProgramTitle:'Graduate Studies',
+    splashProgramSub:'MSc in Internal Medicine',
+    splashHeadLabel:'Head of Graduate Studies Office - Internal Medicine',
+    splashHeadName:'Dr. Emhamed Al-Jazwi',
+    splashDesignerLabel:'System Designer',
+    splashDesignerRole:'Head of Study & Examinations Department',
+    splashDesignerName:'Dr. Saleh Al-Awjali',
+    splashEnter:'Enter System',
+    splashFooter:'Graduate Students Management System',
+    /* Exit / Close */
+    splashCloseTooltip:'Close System',
+    confirmExit:'Return to the welcome screen?\nYour data will be saved automatically.',
+    confirmClose:'Close the system?',
+    closeMessage:'Thank you for using the system.\nYou can now close this tab manually.',
+    exitDone:'Returned to welcome screen'
+  }
+};
+
+let LANG = 'ar';
+function t(k){ return I18N[LANG][k] !== undefined ? I18N[LANG][k] : (I18N.ar[k] || k); }
+
+function getLocalized(list, val){
+  const item = list.find(x => x.val === val);
+  if(!item) return val;
+  return LANG === 'en' ? item.en : item.ar;
+}
+function getDeptLabel(val){
+  if(val === 'عام') return LANG === 'en' ? 'General' : 'عام';
+  const d = DEPARTMENTS.find(x => x.ar === val);
+  return d ? (LANG === 'en' ? d.en : d.ar) : val;
+}
+function statusLabel(v){ return getLocalized(STATUS_LIST, v); }
+function statusTag(v){
+  const s = STATUS_LIST.find(x => x.val === v);
+  return `<span class="tag ${s ? s.cls : 'tag-gray'}">${esc(statusLabel(v))}</span>`;
+}
+
+const $ = id => document.getElementById(id);
+const uid = p => p + '-' + Date.now().toString(36) + Math.random().toString(36).slice(2,6);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, m =>
+  ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+function toast(msg, type = 'ok'){
+  const el = document.createElement('div');
+  el.className = 'toast' + (type === 'err' ? ' err' : type === 'warn' ? ' warn' : '');
+  el.textContent = msg;
+  $('toastWrap').appendChild(el);
+  setTimeout(() => { el.style.opacity = '0'; el.style.transform = 'translateX(-30px)';
+    setTimeout(() => el.remove(), 300); }, 2800);
+}
+
+function fmtDate(d){
+  if(!d) return '—';
+  const dt = new Date(d);
+  if(isNaN(dt)) return d;
+  return dt.toLocaleDateString(LANG === 'en' ? 'en-GB' : 'ar-EG', {year:'numeric', month:'2-digit', day:'2-digit'});
+}
+
+const STORAGE_KEY = 'medgrad_internal_bilingual_v4';
+let DB = null;
+let currentView = 'dashboard';
+
+function loadDB(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw) return JSON.parse(raw);
+  }catch(e){ console.warn(e); }
+  return null;
+}
+function saveDB(){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(DB)); }
+  catch(e){ toast(t('tLocalSaveFail'),'err'); }
+}
+
+function seedDB(){
+  const sups = [
+    {id:uid('sup'), name:'أحمد محمد الفيتوري', title:'أ.د.', dept:'أمراض القلب والأوعية الدموية',
+      specialty:'قسطرة القلب التداخلية', email:'a.fitouri@uob.edu.ly', phone:'091-0000001', max:5},
+    {id:uid('sup'), name:'سالم عبدالله بن غشير', title:'د.', dept:'أمراض الغدد الصماء والسكري',
+      specialty:'السكري واضطرابات الأيض', email:'s.bengashir@uob.edu.ly', phone:'091-0000002', max:4},
+    {id:uid('sup'), name:'فاطمة علي القبائلي', title:'أ.د.', dept:'أمراض الدم',
+      specialty:'فقر الدم والأورام الدموية', email:'f.gabaili@uob.edu.ly', phone:'091-0000003', max:5},
+    {id:uid('sup'), name:'منى إبراهيم الشركسي', title:'د.', dept:'أمراض الصدر والجهاز التنفسي',
+      specialty:'الربو والحساسية التنفسية', email:'m.sharkasi@uob.edu.ly', phone:'091-0000004', max:6},
+    {id:uid('sup'), name:'خالد يونس الزوي', title:'أ.د.', dept:'أمراض الجهاز الهضمي والكبد',
+      specialty:'التهاب الكبد الفيروسي', email:'k.zawi@uob.edu.ly', phone:'091-0000005', max:4},
+    {id:uid('sup'), name:'نجاة عمر بن سعود', title:'د.', dept:'الأمراض الروماتيزمية والمناعة',
+      specialty:'الذئبة الحمراء والتهاب المفاصل', email:'n.bensaud@uob.edu.ly', phone:'091-0000006', max:5},
+    {id:uid('sup'), name:'مصطفى إبراهيم القمودي', title:'أ.د.', dept:'أمراض الكلى وضغط الدم',
+      specialty:'الفشل الكلوي المزمن', email:'m.gamoudi@uob.edu.ly', phone:'091-0000007', max:4}
+  ];
+
+  const courses = [
+    {id:uid('crs'), code:'MED501', name:'منهجية البحث العلمي', credits:3, dept:'عام', type:'إجباري', semester:'خريف'},
+    {id:uid('crs'), code:'MED502', name:'الإحصاء الحيوي والطبي', credits:3, dept:'عام', type:'إجباري', semester:'خريف'},
+    {id:uid('crs'), code:'MED503', name:'أخلاقيات البحث الطبي', credits:2, dept:'عام', type:'إجباري', semester:'خريف'},
+    {id:uid('crs'), code:'INT510', name:'أساسيات الطب الباطني', credits:4, dept:'عام', type:'إجباري', semester:'خريف'},
+    {id:uid('crs'), code:'CAR520', name:'أمراض القلب السريرية', credits:4, dept:'أمراض القلب والأوعية الدموية', type:'إجباري', semester:'خريف'},
+    {id:uid('crs'), code:'CAR521', name:'تخطيط القلب والإيكو', credits:3, dept:'أمراض القلب والأوعية الدموية', type:'اختياري', semester:'ربيع'},
+    {id:uid('crs'), code:'PUL530', name:'أمراض الصدر والتنفس', credits:3, dept:'أمراض الصدر والجهاز التنفسي', type:'إجباري', semester:'خريف'},
+    {id:uid('crs'), code:'PUL531', name:'وظائف الرئة والمناظير', credits:2, dept:'أمراض الصدر والجهاز التنفسي', type:'اختياري', semester:'ربيع'},
+    {id:uid('crs'), code:'HEM540', name:'أمراض الدم السريرية', credits:3, dept:'أمراض الدم', type:'إجباري', semester:'ربيع'},
+    {id:uid('crs'), code:'GIT550', name:'أمراض الجهاز الهضمي والكبد', credits:4, dept:'أمراض الجهاز الهضمي والكبد', type:'إجباري', semester:'ربيع'},
+    {id:uid('crs'), code:'END560', name:'الغدد الصماء والسكري', credits:3, dept:'أمراض الغدد الصماء والسكري', type:'إجباري', semester:'ربيع'},
+    {id:uid('crs'), code:'NEP570', name:'أمراض الكلى وضغط الدم', credits:3, dept:'أمراض الكلى وضغط الدم', type:'إجباري', semester:'ربيع'},
+    {id:uid('crs'), code:'RHE580', name:'الأمراض الروماتيزمية والمناعة', credits:3, dept:'الأمراض الروماتيزمية والمناعة', type:'اختياري', semester:'ربيع'},
+    {id:uid('crs'), code:'INF590', name:'الأمراض المعدية', credits:3, dept:'الأمراض المعدية', type:'إجباري', semester:'ربيع'},
+    {id:uid('crs'), code:'ONC591', name:'الأورام الطبية', credits:3, dept:'الأورام الطبية', type:'اختياري', semester:'ربيع'},
+    {id:uid('crs'), code:'MED599', name:'حلقة بحث / سيمينار', credits:2, dept:'عام', type:'إجباري', semester:'صيف'}
+  ];
+
+  const students = [
+    {id:uid('std'), reg:'INT-2024-001', name:'محمد عبدالسلام العبيدي', nid:'119870012345', gender:'ذكر', dob:'1996-03-12', phone:'091-2345671', email:'m.obeidi@uob.edu.ly', dept:'أمراض القلب والأوعية الدموية', degree:'ماجستير في الطب الباطني', year:'2024/2025', supId:sups[0].id, status:'نشط', notes:''},
+    {id:uid('std'), reg:'INT-2024-002', name:'هبة مصطفى بن سعيد', nid:'219900054321', gender:'أنثى', dob:'1998-07-25', phone:'092-3456782', email:'h.bensaid@uob.edu.ly', dept:'أمراض الدم', degree:'ماجستير في الطب الباطني', year:'2024/2025', supId:sups[2].id, status:'نشط', notes:''},
+    {id:uid('std'), reg:'INT-2023-003', name:'عمر فرج الدرسي', nid:'119850098765', gender:'ذكر', dob:'1995-01-08', phone:'094-4567893', email:'o.darsi@uob.edu.ly', dept:'أمراض الغدد الصماء والسكري', degree:'ماجستير مهني في الباطنة', year:'2023/2024', supId:sups[1].id, status:'نشط', notes:''},
+    {id:uid('std'), reg:'INT-2023-004', name:'سارة جمعة المنصوري', nid:'219920011223', gender:'أنثى', dob:'1997-11-30', phone:'091-5678904', email:'s.mansouri@uob.edu.ly', dept:'أمراض الصدر والجهاز التنفسي', degree:'ماجستير في الطب الباطني', year:'2023/2024', supId:sups[3].id, status:'متخرج', notes:'نوقشت الرسالة بامتياز'},
+    {id:uid('std'), reg:'INT-2025-005', name:'يوسف الطاهر بالقاسم', nid:'119990044556', gender:'ذكر', dob:'1999-05-17', phone:'092-6789015', email:'y.belgasem@uob.edu.ly', dept:'الأمراض المعدية', degree:'ماجستير في الطب الباطني', year:'2025/2026', supId:sups[4].id, status:'نشط', notes:''},
+    {id:uid('std'), reg:'INT-2024-006', name:'آمنة صالح الورفلي', nid:'219950077889', gender:'أنثى', dob:'1996-09-02', phone:'094-7890126', email:'a.warfalli@uob.edu.ly', dept:'الأمراض الروماتيزمية والمناعة', degree:'ماجستير مهني في الباطنة', year:'2024/2025', supId:sups[5].id, status:'متوقف', notes:'إجازة أمومة'},
+    {id:uid('std'), reg:'INT-2025-007', name:'عبدالرحمن نوري القذافي', nid:'119970033221', gender:'ذكر', dob:'1997-12-19', phone:'091-8901237', email:'a.gaddafi@uob.edu.ly', dept:'أمراض الكلى وضغط الدم', degree:'ماجستير في الطب الباطني', year:'2025/2026', supId:sups[6].id, status:'نشط', notes:''},
+    {id:uid('std'), reg:'INT-2024-008', name:'زينب خليفة الفاخري', nid:'219980066554', gender:'أنثى', dob:'1998-04-11', phone:'092-9012348', email:'z.fakhri@uob.edu.ly', dept:'الأورام الطبية', degree:'ماجستير في الطب الباطني', year:'2024/2025', supId:sups[2].id, status:'نشط', notes:''},
+    {id:uid('std'), reg:'INT-2024-009', name:'خالد إبراهيم بوكراع', nid:'119880077881', gender:'ذكر', dob:'1994-06-20', phone:'091-1111111', email:'k.boukraa@uob.edu.ly', dept:'أمراض الجهاز الهضمي والكبد', degree:'ماجستير في الطب الباطني', year:'2024/2025', supId:sups[4].id, status:'نشط', notes:''}
+  ];
+
+  const grades = [];
+  const gradePick = ['A','A-','B+','B','B-','C+','A','B+','A-'];
+  students.forEach((s, si) => {
+    const pool = courses.filter(c => c.semester === 'خريف');
+    pool.slice(0, 4).forEach((c, ci) => {
+      const g = gradePick[(si + ci) % gradePick.length];
+      const pts = GRADE_SCALE.find(x => x.g === g).pts;
+      grades.push({id:uid('grd'), studentId:s.id, courseId:c.id, semester:'خريف', year:s.year, grade:g, points:pts});
+    });
+  });
+
+  const theses = students.map((s, i) => ({
+    id: uid('ths'), studentId: s.id,
+    titleAr: [
+      'عوامل الخطورة المؤثرة في نتائج قسطرة القلب التداخلية بمستشفى الجلاء',
+      'اضطرابات الدم لدى مرضى الفشل الكلوي المزمن في مدينة بنغازي',
+      'تقييم فعالية الأدوية الخافضة للسكر من الجيل الثاني لدى مرضى السكري',
+      'معدلات انتشار الربو التحسسي لدى البالغين في بنغازي',
+      'الأنماط المصلية للبكتيريا المقاومة للمضادات الحيوية بالمستشفيات الليبية',
+      'العلاقة بين هشاشة العظام وأمراض المناعة الذاتية',
+      'تقييم وظائف الكلى لدى مرضى ارتفاع ضغط الدم المزمن',
+      'العلامات المناعية للأورام الصلبة وعلاقتها بالاستجابة للعلاج',
+      'فعالية منظار الجهاز الهضمي العلوي في تشخيص نزيف الجهاز الهضمي'
+    ][i % 9],
+    titleEn: 'Clinical Study in Internal Medicine',
+    stage: STAGE_LIST[i % STAGE_LIST.length].val,
+    progress: STAGE_LIST[i % STAGE_LIST.length].progress,
+    startDate: '2024-10-01', protocolDate: '2025-01-15',
+    defenseDate: '', committee: sups[i % sups.length].name,
+    status: i % 3 === 0 ? 'قيد التنفيذ' : 'قيد المراجعة'
+  }));
+
+  return {
+    students, courses, grades, supervisors: sups, theses,
+    settings: {
+      univ: 'جامعة بنغازي', college: 'كلية الطب',
+      dept: 'قسم الباطنة العامة - الدراسات العليا',
+      year: '2025/2026', theme: 'light', lang: 'ar'
+    }
+  };
+}
+
+function init(){
+  if(window.__PRELOAD_DATA__){ DB = window.__PRELOAD_DATA__; saveDB(); }
+  else { DB = loadDB(); if(!DB || !DB.students){ DB = seedDB(); saveDB(); } }
+  if(!DB.settings) DB.settings = {univ:'جامعة بنغازي', college:'كلية الطب', dept:'قسم الباطنة العامة - الدراسات العليا', year:'2025/2026', theme:'light', lang:'ar'};
+  LANG = DB.settings.lang || 'ar';
+  applyLang();
+  if(DB.settings.theme === 'dark') document.body.classList.add('dark');
+
+  document.querySelectorAll('.nav-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      navigate(btn.dataset.view);
+      if(window.innerWidth <= 980) $('sidebar').classList.remove('open');
+    });
+  });
+  navigate('dashboard');
+}
+
+function applyLang(){
+  document.documentElement.lang = LANG;
+  document.documentElement.dir = LANG === 'ar' ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if(I18N[LANG][k]) el.textContent = I18N[LANG][k];
+  });
+  $('brandTitle').textContent = t('brandTitle');
+  $('brandSubtitle').textContent = t('brandSubtitle');
+  $('sidebarFoot1').textContent = t('sidebarFoot1');
+  $('sidebarFoot2').textContent = t('sidebarFoot2');
+  $('langBtn').textContent = LANG === 'ar' ? 'English' : 'عربي';
+  $('yearBadge').textContent = t('yearBadge') + ' ' + DB.settings.year;
+  if($('pageTitle')) $('pageTitle').textContent = t('title' + currentView.charAt(0).toUpperCase() + currentView.slice(1));
+  const dl = $('downloadBtn').querySelector('.dl-text');
+  if(dl) dl.textContent = t('downloadText');
+
+  if($('splashUniv')) $('splashUniv').textContent = t('splashUniv');
+  if($('splashCollege')) $('splashCollege').textContent = t('splashCollege');
+  if($('splashDept')) $('splashDept').textContent = t('splashDept');
+  if($('splashProgramTitle')) $('splashProgramTitle').textContent = t('splashProgramTitle');
+  if($('splashProgramSub')) $('splashProgramSub').textContent = t('splashProgramSub');
+  if($('splashHeadLabel')) $('splashHeadLabel').textContent = t('splashHeadLabel');
+  if($('splashHeadName')) $('splashHeadName').textContent = t('splashHeadName');
+  if($('splashDesignerLabel')) $('splashDesignerLabel').textContent = t('splashDesignerLabel');
+  if($('splashDesignerRole')) $('splashDesignerRole').textContent = t('splashDesignerRole');
+  if($('splashDesignerName')) $('splashDesignerName').textContent = t('splashDesignerName');
+  if($('splashEnterText')) $('splashEnterText').textContent = t('splashEnter');
+  if($('splashFooter')) $('splashFooter').textContent = t('splashFooter');
+  if($('splashCloseTooltip')) $('splashCloseTooltip').textContent = t('splashCloseTooltip');
+  if($('exitBtn')) $('exitBtn').setAttribute('title', t('exitToSplash'));
+}
+
+function enterSystem(){
+  const splash = $('splash');
+  if(splash){
+    splash.classList.add('hide');
+    setTimeout(() => { splash.style.display = 'none'; }, 600);
+  }
+}
+
+/* الخروج إلى الواجهة الرئيسية */
+function exitToSplash(){
+  if(!confirm(t('confirmExit'))) return;
+  const splash = $('splash');
+  if(splash){
+    splash.style.display = '';
+    void splash.offsetHeight;
+    splash.classList.remove('hide');
+    window.scrollTo({top:0, behavior:'smooth'});
+    if($('sidebar')) $('sidebar').classList.remove('open');
+  }
+  toast(t('exitDone'),'warn');
+}
+
+/* إغلاق المنظومة نهائياً */
+function closeSystem(){
+  if(!confirm(t('confirmClose'))) return;
+  try{
+    window.open('', '_self', '');
+    window.close();
+  }catch(e){}
+  setTimeout(() => {
+    if(!document.hidden){
+      alert(t('closeMessage'));
+    }
+  }, 300);
+}
+
+function toggleLang(){
+  LANG = LANG === 'ar' ? 'en' : 'ar';
+  DB.settings.lang = LANG;
+  saveDB();
+  applyLang();
+  render();
+  toast(LANG === 'en' ? 'Language: English' : 'تم التبديل إلى العربية');
+}
+
+function toggleTheme(){
+  document.body.classList.toggle('dark');
+  DB.settings.theme = document.body.classList.contains('dark') ? 'dark' : 'light';
+  saveDB();
+}
+
+function toggleSidebar(){ $('sidebar').classList.toggle('open'); }
+
+function downloadSystem(){
+  try{
+    const clone = document.documentElement.cloneNode(true);
+    const content = clone.querySelector('#content'); if(content) content.innerHTML = '';
+    const overlay = clone.querySelector('#overlay'); if(overlay) overlay.classList.remove('open');
+    const modal = clone.querySelector('#modal'); if(modal) modal.classList.remove('open');
+    const toastWrap = clone.querySelector('#toastWrap'); if(toastWrap) toastWrap.innerHTML = '';
+    const sidebar = clone.querySelector('#sidebar'); if(sidebar) sidebar.classList.remove('open');
+    const splash = clone.querySelector('#splash'); if(splash){ splash.classList.remove('hide'); splash.style.display = ''; }
+    clone.classList.remove('dark');
+
+    const dataScript = document.createElement('script');
+    dataScript.textContent = 'window.__PRELOAD_DATA__ = ' + JSON.stringify(DB) + ';';
+    const body = clone.querySelector('body');
+    if(body) body.insertBefore(dataScript, body.firstChild);
+
+    const html = '<!DOCTYPE html>\n' + clone.outerHTML;
+    const blob = new Blob([html], {type: 'text/html;charset=utf-8'});
+    const fileName = `منظومة_الباطنة_العامة_${new Date().toISOString().slice(0,10)}.html`;
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = fileName;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(a.href), 1500);
+    toast(t('tDownloaded'));
+  }catch(err){
+    console.error(err);
+    toast(t('tDownloadFail') + ': ' + err.message, 'err');
+  }
+}
+
+function navigate(view){
+  currentView = view;
+  document.querySelectorAll('.nav-item').forEach(n =>
+    n.classList.toggle('active', n.dataset.view === view));
+  $('pageTitle').textContent = t('title' + view.charAt(0).toUpperCase() + view.slice(1));
+  render();
+}
+
+function render(){
+  const c = $('content');
+  switch(currentView){
+    case 'dashboard':   c.innerHTML = viewDashboard();   break;
+    case 'students':    c.innerHTML = viewStudents();    break;
+    case 'courses':     c.innerHTML = viewCourses();     break;
+    case 'grades':      c.innerHTML = viewGrades();      break;
+    case 'thesis':      c.innerHTML = viewThesis();      break;
+    case 'supervisors': c.innerHTML = viewSupervisors(); break;
+    case 'reports':     c.innerHTML = viewReports();     break;
+    case 'settings':    c.innerHTML = viewSettings();    break;
+  }
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function computeGPA(studentId){
+  const gs = DB.grades.filter(g => g.studentId === studentId);
+  if(!gs.length) return {gpa:0, hours:0, count:0};
+  let pts = 0, cr = 0;
+  gs.forEach(g => {
+    const course = DB.courses.find(c => c.id === g.courseId);
+    const c = course ? Number(course.credits) : 0;
+    pts += c * Number(g.points || 0);
+    cr += c;
+  });
+  return {gpa: cr ? pts / cr : 0, hours: cr, count: gs.length};
+}
+
+function viewDashboard(){
+  const total = DB.students.length;
+  const active = DB.students.filter(s => s.status === 'نشط').length;
+  const graduated = DB.students.filter(s => s.status === 'متخرج').length;
+  const stopped = DB.students.filter(s => s.status === 'متوقف').length;
+  const branchCount = new Set(DB.students.map(s => s.dept)).size;
+  const gpas = DB.students.map(s => computeGPA(s.id).gpa).filter(v => v > 0);
+  const avgGpa = gpas.length ? (gpas.reduce((a,b) => a+b, 0) / gpas.length) : 0;
+
+  const byDept = {};
+  DB.students.forEach(s => byDept[s.dept] = (byDept[s.dept] || 0) + 1);
+  const deptArr = Object.entries(byDept).sort((a,b) => b[1] - a[1]).slice(0, 10);
+  const maxDept = Math.max(1, ...deptArr.map(d => d[1]));
+
+  const byStage = {};
+  STAGE_LIST.forEach(st => byStage[st.val] = 0);
+  DB.theses.forEach(x => { if(byStage[x.stage] !== undefined) byStage[x.stage]++; });
+
+  const recent = [...DB.students].slice(-5).reverse();
+
+  return `
+  <div class="stats-grid">
+    <div class="stat" style="--c:#0d6e5f"><div class="s-ico">🎓</div>
+      <div><div class="s-val">${total}</div><div class="s-lbl">${t('statTotalStudents')}</div></div></div>
+    <div class="stat" style="--c:#1e8e5a"><div class="s-ico">✅</div>
+      <div><div class="s-val">${active}</div><div class="s-lbl">${t('statActive')}</div></div></div>
+    <div class="stat" style="--c:#2b6cb0"><div class="s-ico">🏅</div>
+      <div><div class="s-val">${graduated}</div><div class="s-lbl">${t('statGraduated')}</div></div></div>
+    <div class="stat" style="--c:#d9820b"><div class="s-ico">⏸️</div>
+      <div><div class="s-val">${stopped}</div><div class="s-lbl">${t('statStopped')}</div></div></div>
+    <div class="stat" style="--c:#7c3aed"><div class="s-ico">🩺</div>
+      <div><div class="s-val">${branchCount}</div><div class="s-lbl">${t('statBranches')}</div></div></div>
+    <div class="stat" style="--c:#c8a15a"><div class="s-ico">📈</div>
+      <div><div class="s-val">${avgGpa.toFixed(2)}</div><div class="s-lbl">${t('statAvgGpa')}</div></div></div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:18px" class="dash-cols">
+    <div class="card">
+      <div class="card-head"><h3>🩺 ${t('chartDeptDist')}</h3></div>
+      <div class="card-body">
+        ${deptArr.length ? deptArr.map(([d, n]) => `
+          <div class="bar-row">
+            <div class="b-lbl" title="${esc(getDeptLabel(d))}">${esc(getDeptLabel(d))}</div>
+            <div class="b-track"><div class="b-fill" style="width:${(n/maxDept*100).toFixed(1)}%"></div></div>
+            <div class="b-num">${n}</div>
+          </div>`).join('') : `<div class="empty">${t('noData')}</div>`}
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3>📄 ${t('chartStages')}</h3></div>
+      <div class="card-body">
+        ${STAGE_LIST.map(st => {
+          const n = byStage[st.val];
+          return `<div class="bar-row">
+            <div class="b-lbl" title="${esc(LANG==='en'?st.en:st.ar)}">${esc(LANG==='en'?st.en:st.ar)}</div>
+            <div class="b-track"><div class="b-fill" style="width:${total ? (n/total*100).toFixed(1) : 0}%;background:linear-gradient(90deg,#c8a15a,#0d6e5f)"></div></div>
+            <div class="b-num">${n}</div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:18px">
+    <div class="card-head">
+      <h3>🕒 ${t('recentStudents')}</h3>
+      <button class="btn btn-ghost btn-sm" onclick="navigate('students')">${t('viewAll')}</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>${t('thReg')}</th><th>${t('thName')}</th><th>${t('thBranch')}</th>
+          <th>${t('thProgram')}</th><th>${t('thSupervisor')}</th><th>${t('thGpa')}</th><th>${t('thStatus')}</th>
+        </tr></thead>
+        <tbody>
+          ${recent.length ? recent.map(s => {
+            const sup = DB.supervisors.find(x => x.id === s.supId);
+            const {gpa} = computeGPA(s.id);
+            return `<tr>
+              <td><b>${esc(s.reg)}</b></td>
+              <td>${esc(s.name)}</td>
+              <td>${esc(getDeptLabel(s.dept))}</td>
+              <td><span class="tag tag-gray">${esc(getLocalized(DEGREE_LIST, s.degree))}</span></td>
+              <td>${sup ? esc(sup.title + ' ' + sup.name) : '—'}</td>
+              <td><b style="color:var(--primary)">${gpa ? gpa.toFixed(2) : '—'}</b></td>
+              <td>${statusTag(s.status)}</td>
+            </tr>`;
+          }).join('') : `<tr><td colspan="7" class="empty">${t('noStudents')}</td></tr>`}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <style>@media(max-width:980px){.dash-cols{grid-template-columns:1fr !important}}</style>`;
+}
+
+let studentFilter = {q:'', dept:'', status:''};
+
+function viewStudents(){
+  const list = DB.students.filter(s => {
+    const q = studentFilter.q.trim().toLowerCase();
+    const okQ = !q || s.name.toLowerCase().includes(q) || s.reg.toLowerCase().includes(q)
+              || (s.nid || '').includes(q) || (s.phone || '').includes(q);
+    const okD = !studentFilter.dept || s.dept === studentFilter.dept;
+    const okS = !studentFilter.status || s.status === studentFilter.status;
+    return okQ && okD && okS;
+  });
+
+  return `
+  <div class="toolbar">
+    <div class="search-box">
+      <input type="text" id="stdSearch" placeholder="${esc(t('searchStudents'))}"
+             value="${esc(studentFilter.q)}" oninput="onStudentSearch(this.value)">
+    </div>
+    <select style="width:auto;min-width:200px" onchange="studentFilter.dept=this.value;render()">
+      <option value="">${t('filterAllBranches')}</option>
+      ${DEPARTMENTS.map(d => `<option value="${esc(d.ar)}" ${studentFilter.dept===d.ar?'selected':''}>${esc(LANG==='en'?d.en:d.ar)}</option>`).join('')}
+    </select>
+    <select style="width:auto;min-width:140px" onchange="studentFilter.status=this.value;render()">
+      <option value="">${t('filterAllStatuses')}</option>
+      ${STATUS_LIST.map(s => `<option value="${esc(s.val)}" ${studentFilter.status===s.val?'selected':''}>${esc(LANG==='en'?s.en:s.ar)}</option>`).join('')}
+    </select>
+    <div class="spacer"></div>
+    <button class="btn btn-ghost" onclick="exportCSV('students')">${t('btnExportCsv')}</button>
+    <button class="btn btn-primary" onclick="openStudentForm()">${t('btnAddStudent')}</button>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3>${t('cardStudentLog')}</h3>
+      <span class="tag tag-gray">${list.length}</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>#</th><th>${t('thReg')}</th><th>${t('thName')}</th><th>${t('thBranch')}</th>
+          <th>${t('thProgram')}</th><th>${t('thYear')}</th><th>${t('thSupervisor')}</th>
+          <th>${t('thGpa')}</th><th>${t('thStatus')}</th><th>${t('thActions')}</th>
+        </tr></thead>
+        <tbody>
+          ${list.length ? list.map((s, i) => {
+            const sup = DB.supervisors.find(x => x.id === s.supId);
+            const {gpa} = computeGPA(s.id);
+            return `<tr>
+              <td>${i+1}</td>
+              <td><b>${esc(s.reg)}</b></td>
+              <td>${esc(s.name)}</td>
+              <td>${esc(getDeptLabel(s.dept))}</td>
+              <td><span class="tag tag-blue">${esc(getLocalized(DEGREE_LIST, s.degree))}</span></td>
+              <td>${esc(s.year)}</td>
+              <td>${sup ? esc(sup.name) : `<span style="color:var(--muted)">${t('fNotSet')}</span>`}</td>
+              <td><b style="color:var(--primary)">${gpa ? gpa.toFixed(2) : '—'}</b></td>
+              <td>${statusTag(s.status)}</td>
+              <td style="white-space:nowrap">
+                <button class="btn-icon" onclick="viewStudentProfile('${s.id}')">👁️</button>
+                <button class="btn-icon" onclick="openStudentForm('${s.id}')">✏️</button>
+                <button class="btn-icon" onclick="deleteStudent('${s.id}')">🗑️</button>
+              </td>
+            </tr>`;
+          }).join('') : `<tr><td colspan="10" class="empty"><span class="e-ico">🎓</span>${t('tNoResults')}</td></tr>`}
+        </tbody>
+      </table>
+    </div>
+  </div>`;
+}
+
+let searchTimer = null;
+function onStudentSearch(v){
+  studentFilter.q = v;
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    const val = v;
+    render();
+    const inp = $('stdSearch');
+    if(inp){ inp.value = val; inp.focus(); inp.setSelectionRange(val.length, val.length); }
+  }, 260);
+}
+
+function openStudentForm(id){
+  const s = id ? DB.students.find(x => x.id === id) : null;
+  const isEdit = !!s;
+  const nextReg = 'INT-' + new Date().getFullYear() + '-' + String(DB.students.length + 1).padStart(3, '0');
+
+  showModal(isEdit ? t('mEditStudent') : t('mAddStudent'), `
+    <form id="studentForm" onsubmit="submitStudent(event, ${isEdit ? `'${id}'` : 'null'})">
+      <div class="form-grid">
+        <div class="field"><label>${t('fReg')} <span class="req">*</span></label>
+          <input name="reg" required value="${esc(s ? s.reg : nextReg)}"></div>
+        <div class="field"><label>${t('fName')} <span class="req">*</span></label>
+          <input name="name" required value="${esc(s ? s.name : '')}"></div>
+        <div class="field"><label>${t('fNid')}</label>
+          <input name="nid" value="${esc(s ? s.nid : '')}"></div>
+        <div class="field"><label>${t('fGender')}</label>
+          <select name="gender">
+            <option value="ذكر" ${s && s.gender==='ذكر'?'selected':''}>${t('fMale')}</option>
+            <option value="أنثى" ${s && s.gender==='أنثى'?'selected':''}>${t('fFemale')}</option>
+          </select></div>
+        <div class="field"><label>${t('fDob')}</label>
+          <input type="date" name="dob" value="${esc(s ? s.dob : '')}"></div>
+        <div class="field"><label>${t('fPhone')}</label>
+          <input name="phone" value="${esc(s ? s.phone : '')}"></div>
+        <div class="field full"><label>${t('fEmail')}</label>
+          <input type="email" name="email" value="${esc(s ? s.email : '')}"></div>
+        <div class="field"><label>${t('fBranch')} <span class="req">*</span></label>
+          <select name="dept" required>
+            ${DEPARTMENTS.map(d => `<option value="${esc(d.ar)}" ${s && s.dept===d.ar?'selected':''}>${esc(LANG==='en'?d.en:d.ar)}</option>`).join('')}
+          </select></div>
+        <div class="field"><label>${t('fProgram')}</label>
+          <select name="degree">
+            ${DEGREE_LIST.map(d => `<option value="${esc(d.val)}" ${s && s.degree===d.val?'selected':''}>${esc(LANG==='en'?d.en:d.ar)}</option>`).join('')}
+          </select></div>
+        <div class="field"><label>${t('fYear')}</label>
+          <input name="year" value="${esc(s ? s.year : DB.settings.year)}"></div>
+        <div class="field"><label>${t('fSupervisor')}</label>
+          <select name="supId">
+            <option value="">${t('fNotSet')}</option>
+            ${DB.supervisors.map(x => `<option value="${x.id}" ${s && s.supId===x.id?'selected':''}>${esc(x.title + ' ' + x.name)} (${esc(getDeptLabel(x.dept))})</option>`).join('')}
+          </select></div>
+        <div class="field"><label>${t('fStatus')}</label>
+          <select name="status">
+            ${STATUS_LIST.map(x => `<option value="${esc(x.val)}" ${s && s.status===x.val?'selected':''}>${esc(LANG==='en'?x.en:x.ar)}</option>`).join('')}
+          </select></div>
+        <div class="field full"><label>${t('fNotes')}</label>
+          <textarea name="notes" rows="2">${esc(s ? s.notes : '')}</textarea></div>
+      </div>
+    </form>
+  `, `
+    <button class="btn btn-primary" onclick="document.getElementById('studentForm').requestSubmit()">${t('btnSave')}</button>
+    <button class="btn btn-ghost" onclick="closeModal()">${t('btnCancel')}</button>
+  `);
+}
+
+function submitStudent(e, id){
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(e.target).entries());
+  if(!data.reg.trim() || !data.name.trim()){ toast(t('tFillRequired'),'err'); return; }
+  const dup = DB.students.find(s => s.reg === data.reg.trim() && s.id !== id);
+  if(dup){ toast(t('tDupReg'),'err'); return; }
+  if(id){
+    const idx = DB.students.findIndex(s => s.id === id);
+    DB.students[idx] = {...DB.students[idx], ...data};
+    toast(t('tStudentUpdated'));
+  }else{
+    DB.students.push({id: uid('std'), ...data});
+    toast(t('tStudentAdded'));
+  }
+  saveDB(); closeModal(); render();
+}
+
+function deleteStudent(id){
+  const s = DB.students.find(x => x.id === id);
+  if(!s) return;
+  if(!confirm(`${t('tConfirmDeleteStudent')}: ${s.name}؟\n${t('tDeleteGradesThesis')}`)) return;
+  DB.students = DB.students.filter(x => x.id !== id);
+  DB.grades  = DB.grades.filter(g => g.studentId !== id);
+  DB.theses  = DB.theses.filter(th => th.studentId !== id);
+  saveDB(); render();
+  toast(t('tDeleted'),'warn');
+}
+
+function viewStudentProfile(id){
+  const s = DB.students.find(x => x.id === id);
+  if(!s) return;
+  const sup = DB.supervisors.find(x => x.id === s.supId);
+  const {gpa, hours, count} = computeGPA(s.id);
+  const myGrades = DB.grades.filter(g => g.studentId === s.id);
+  const thesis = DB.theses.find(th => th.studentId === s.id);
+  const initials = s.name.trim().split(/\s+/).slice(0,2).map(w => w[0]).join('');
+
+  showModal(t('mStudentProfile'), `
+    <div class="profile-head">
+      <div class="profile-avatar">${esc(initials)}</div>
+      <div style="flex:1;min-width:150px">
+        <h3>${esc(s.name)}</h3>
+        <p>${esc(s.reg)} · ${esc(getDeptLabel(s.dept))}</p>
+        <p>${esc(getLocalized(DEGREE_LIST, s.degree))} — ${esc(s.year)}</p>
+      </div>
+      <div>${statusTag(s.status)}</div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-item"><span>${t('infoNid')}</span><b>${esc(s.nid || '—')}</b></div>
+      <div class="info-item"><span>${t('infoGender')}</span><b>${esc(s.gender === 'ذكر' ? t('fMale') : s.gender === 'أنثى' ? t('fFemale') : (s.gender||'—'))}</b></div>
+      <div class="info-item"><span>${t('infoDob')}</span><b>${fmtDate(s.dob)}</b></div>
+      <div class="info-item"><span>${t('infoPhone')}</span><b>${esc(s.phone || '—')}</b></div>
+      <div class="info-item"><span>${t('infoEmail')}</span><b style="font-size:12px">${esc(s.email || '—')}</b></div>
+      <div class="info-item"><span>${t('infoSupervisor')}</span><b>${sup ? esc(sup.title + ' ' + sup.name) : t('fNotSet')}</b></div>
+      <div class="info-item"><span>${t('infoGpa')}</span><b style="color:var(--primary);font-size:16px">${gpa ? gpa.toFixed(2) : '—'}</b></div>
+      <div class="info-item"><span>${t('infoHours')}</span><b>${hours} ${t('infoHoursSuffix')} (${count} ${t('infoCoursesSuffix')})</b></div>
+    </div>
+
+    <h4 style="margin:18px 0 10px;font-size:14px">${t('infoCoursesGrades')}</h4>
+    <div class="table-wrap" style="border:1px solid var(--border)">
+      <table>
+        <thead><tr>
+          <th>${t('thCode')}</th><th>${t('thCourseName')}</th><th>${t('thCredits')}</th>
+          <th>${t('thSemester')}</th><th>${t('thGradeCol')}</th><th>${t('thPoints')}</th>
+        </tr></thead>
+        <tbody>
+          ${myGrades.length ? myGrades.map(g => {
+            const c = DB.courses.find(x => x.id === g.courseId);
+            return `<tr>
+              <td>${c ? esc(c.code) : '—'}</td>
+              <td>${c ? esc(c.name) : '—'}</td>
+              <td>${c ? c.credits : '—'}</td>
+              <td>${esc(getLocalized(SEMESTER_LIST, g.semester))} ${esc(g.year)}</td>
+              <td><b>${esc(g.grade)}</b></td>
+              <td>${Number(g.points).toFixed(1)}</td>
+            </tr>`;
+          }).join('') : `<tr><td colspan="6" class="empty">${t('tNoGrades')}</td></tr>`}
+        </tbody>
+      </table>
+    </div>
+
+    ${thesis ? `
+    <h4 style="margin:18px 0 10px;font-size:14px">${t('infoThesis')}</h4>
+    <div class="info-item" style="margin-bottom:10px">
+      <span>${t('infoThesisTitle')}</span><b>${esc(thesis.titleAr)}</b>
+    </div>
+    <div class="info-grid">
+      <div class="info-item"><span>${t('infoStage')}</span><b>${esc(getLocalized(STAGE_LIST, thesis.stage))}</b></div>
+      <div class="info-item"><span>${t('infoProgress')}</span><b>${thesis.progress}%</b></div>
+    </div>
+    <div class="progress" style="margin-top:8px"><i style="width:${thesis.progress}%"></i></div>
+    ` : ''}
+  `, `
+    <button class="btn btn-primary" onclick="printStudentProfile('${s.id}')">${t('btnPrintProfile')}</button>
+    <button class="btn btn-ghost" onclick="closeModal()">${t('btnClose')}</button>
+  `);
+}
+
+function printStudentProfile(id){
+  const s = DB.students.find(x => x.id === id);
+  const sup = DB.supervisors.find(x => x.id === s.supId);
+  const {gpa, hours} = computeGPA(s.id);
+  const myGrades = DB.grades.filter(g => g.studentId === s.id);
+  const thesis = DB.theses.find(th => th.studentId === s.id);
+
+  printHTML(t('mStudentProfile') + ' - ' + s.name, `
+    <div class="hd">
+      <h1>${esc(DB.settings.univ)} — ${esc(DB.settings.college)}</h1>
+      <p>${esc(DB.settings.dept)} — ${t('pStudentFile')}</p>
+    </div>
+    <table>
+      <tr><th style="width:180px">${t('pName')}</th><td>${esc(s.name)}</td>
+          <th style="width:150px">${t('pReg')}</th><td>${esc(s.reg)}</td></tr>
+      <tr><th>${t('pBranch')}</th><td>${esc(getDeptLabel(s.dept))}</td>
+          <th>${t('pProgram')}</th><td>${esc(getLocalized(DEGREE_LIST, s.degree))}</td></tr>
+      <tr><th>${t('pYear')}</th><td>${esc(s.year)}</td>
+          <th>${t('pStatus')}</th><td>${esc(statusLabel(s.status))}</td></tr>
+      <tr><th>${t('pSupervisor')}</th><td>${sup ? esc(sup.title+' '+sup.name) : '—'}</td>
+          <th>${t('pPhone')}</th><td>${esc(s.phone||'—')}</td></tr>
+      <tr><th>${t('pGpa')}</th><td colspan="3"><b>${gpa ? gpa.toFixed(2) : '—'}</b> — ${t('pHoursAcquired')}: ${hours}</td></tr>
+    </table>
+    <h3 style="margin-top:22px;color:#0d6e5f">${t('pCoursesGrades')}</h3>
+    <table>
+      <thead><tr>
+        <th>${t('thCode')}</th><th>${t('thCourseName')}</th><th>${t('thCredits')}</th>
+        <th>${t('thSemester')}</th><th>${t('thGradeCol')}</th><th>${t('thPoints')}</th>
+      </tr></thead>
+      <tbody>${myGrades.map(g => {
+        const c = DB.courses.find(x => x.id === g.courseId);
+        return `<tr><td>${c?esc(c.code):'—'}</td><td>${c?esc(c.name):'—'}</td>
+        <td>${c?c.credits:'—'}</td><td>${esc(getLocalized(SEMESTER_LIST, g.semester))}</td>
+        <td>${esc(g.grade)}</td><td>${Number(g.points).toFixed(1)}</td></tr>`;
+      }).join('')}</tbody>
+    </table>
+    ${thesis ? `<h3 style="margin-top:22px;color:#0d6e5f">${t('pThesisScientific')}</h3>
+      <table>
+        <tr><th style="width:180px">${t('pTitle')}</th><td>${esc(thesis.titleAr)}</td></tr>
+        <tr><th>${t('pStage')}</th><td>${esc(getLocalized(STAGE_LIST, thesis.stage))} — ${t('pProgressText')} ${thesis.progress}%</td></tr>
+      </table>` : ''}
+    <p style="margin-top:30px;font-size:12px;color:#666;text-align:center">
+      ${t('pPrintedOn')} ${new Date().toLocaleDateString(LANG==='en'?'en-GB':'ar-EG')} — ${t('pSysName')}
+    </p>
+  `);
+}
+
+function viewCourses(){
+  return `
+  <div class="toolbar">
+    <div class="search-box"><input placeholder="${esc(t('searchCourses'))}" oninput="filterCourses(this.value)"></div>
+    <div class="spacer"></div>
+    <button class="btn btn-primary" onclick="openCourseForm()">${t('btnAddCourse')}</button>
+  </div>
+  <div class="card">
+    <div class="card-head"><h3>${t('cardCoursesLog')}</h3><span class="tag tag-gray">${DB.courses.length}</span></div>
+    <div class="table-wrap">
+      <table id="coursesTable">
+        <thead><tr>
+          <th>#</th><th>${t('thCode')}</th><th>${t('thCourseName')}</th><th>${t('thBranch')}</th>
+          <th>${t('thCredits')}</th><th>${t('thType')}</th><th>${t('thSemester')}</th><th>${t('thActions')}</th>
+        </tr></thead>
+        <tbody>
+          ${DB.courses.length ? DB.courses.map((c, i) => `
+            <tr data-search="${esc((c.code+' '+c.name+' '+c.dept).toLowerCase())}">
+              <td>${i+1}</td>
+              <td><b>${esc(c.code)}</b></td>
+              <td>${esc(c.name)}</td>
+              <td>${esc(getDeptLabel(c.dept))}</td>
+              <td>${c.credits}</td>
+              <td><span class="tag ${c.type==='إجباري'?'tag-green':'tag-gold'}">${esc(getLocalized(TYPE_LIST, c.type))}</span></td>
+              <td>${esc(getLocalized(SEMESTER_LIST, c.semester))}</td>
+              <td style="white-space:nowrap">
+                <button class="btn-icon" onclick="openCourseForm('${c.id}')">✏️</button>
+                <button class="btn-icon" onclick="deleteCourse('${c.id}')">🗑️</button>
+              </td>
+            </tr>`).join('') : `<tr><td colspan="8" class="empty"><span class="e-ico">📚</span>${t('tNoCourses')}</td></tr>`}
+        </tbody>
+      </table>
+    </div>
+  </div>`;
+}
+
+function filterCourses(v){
+  const q = v.trim().toLowerCase();
+  document.querySelectorAll('#coursesTable tbody tr[data-search]').forEach(tr => {
+    tr.style.display = tr.dataset.search.includes(q) ? '' : 'none';
+  });
+}
+
+function openCourseForm(id){
+  const c = id ? DB.courses.find(x => x.id === id) : null;
+  showModal(c ? t('mEditCourse') : t('mAddCourse'), `
+    <form id="courseForm" onsubmit="submitCourse(event, ${c ? `'${id}'` : 'null'})">
+      <div class="form-grid">
+        <div class="field"><label>${t('fCode')} <span class="req">*</span></label>
+          <input name="code" required value="${esc(c ? c.code : '')}" placeholder="INT510"></div>
+        <div class="field"><label>${t('fCourseName')} <span class="req">*</span></label>
+          <input name="name" required value="${esc(c ? c.name : '')}"></div>
+        <div class="field"><label>${t('fDept')}</label>
+          <select name="dept">
+            <option value="عام" ${c && c.dept==='عام'?'selected':''}>${t('fGeneralDept')}</option>
+            ${DEPARTMENTS.map(d => `<option value="${esc(d.ar)}" ${c && c.dept===d.ar?'selected':''}>${esc(LANG==='en'?d.en:d.ar)}</option>`).join('')}
+          </select></div>
+        <div class="field"><label>${t('fCredits')}</label>
+          <input type="number" name="credits" min="1" max="10" value="${c ? c.credits : 3}"></div>
+        <div class="field"><label>${t('fType')}</label>
+          <select name="type">
+            ${TYPE_LIST.map(x => `<option value="${esc(x.val)}" ${c && c.type===x.val?'selected':''}>${esc(LANG==='en'?x.en:x.ar)}</option>`).join('')}
+          </select></div>
+        <div class="field"><label>${t('fSemester')}</label>
+          <select name="semester">
+            ${SEMESTER_LIST.map(x => `<option value="${esc(x.val)}" ${c && c.semester===x.val?'selected':''}>${esc(LANG==='en'?x.en:x.ar)}</option>`).join('')}
+          </select></div>
+      </div>
+    </form>
+  `, `
+    <button class="btn btn-primary" onclick="document.getElementById('courseForm').requestSubmit()">${t('btnSave')}</button>
+    <button class="btn btn-ghost" onclick="closeModal()">${t('btnCancel')}</button>
+  `);
+}
+
+function submitCourse(e, id){
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(e.target).entries());
+  data.credits = Number(data.credits) || 0;
+  if(DB.courses.some(c => c.code === data.code.trim() && c.id !== id)){ toast(t('tDupCode'),'err'); return; }
+  if(id){
+    const i = DB.courses.findIndex(c => c.id === id);
+    DB.courses[i] = {...DB.courses[i], ...data};
+    toast(t('tCourseUpdated'));
+  }else{
+    DB.courses.push({id: uid('crs'), ...data});
+    toast(t('tCourseAdded'));
+  }
+  saveDB(); closeModal(); render();
+}
+
+function deleteCourse(id){
+  const c = DB.courses.find(x => x.id === id);
+  if(!confirm(`${t('tConfirmDeleteCourse')}: ${c.name}؟\n${t('tDeleteCourseGrades')}`)) return;
+  DB.courses = DB.courses.filter(x => x.id !== id);
+  DB.grades  = DB.grades.filter(g => g.courseId !== id);
+  saveDB(); render(); toast(t('tDeleted'),'warn');
+}
+
+let selectedStudentId = null;
+
+function viewGrades(){
+  if(!selectedStudentId && DB.students.length) selectedStudentId = DB.students[0].id;
+  const s = DB.students.find(x => x.id === selectedStudentId);
+  const myGrades = s ? DB.grades.filter(g => g.studentId === s.id) : [];
+  const {gpa, hours} = s ? computeGPA(s.id) : {gpa:0, hours:0};
+  let totalPts = 0;
+  myGrades.forEach(g => {
+    const c = DB.courses.find(x => x.id === g.courseId);
+    if(c) totalPts += Number(c.credits) * Number(g.points);
+  });
+
+  return `
+  <div class="toolbar">
+    <select style="width:auto;min-width:280px;flex:1;max-width:500px" onchange="selectedStudentId=this.value;render()">
+      <option value="">${t('fSelectStudent')}</option>
+      ${DB.students.map(x => `<option value="${x.id}" ${x.id===selectedStudentId?'selected':''}>${esc(x.reg)} — ${esc(x.name)}</option>`).join('')}
+    </select>
+    <div class="spacer"></div>
+    ${s ? `<button class="btn btn-primary" onclick="openGradeForm()">${t('btnAddGrade')}</button>` : ''}
+  </div>
+
+  ${!s ? `<div class="card"><div class="empty"><span class="e-ico">📝</span>${t('tSelectStudentForGrades')}</div></div>` : `
+  <div class="stats-grid" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+    <div class="stat" style="--c:#0d6e5f"><div class="s-ico">📊</div>
+      <div><div class="s-val">${gpa ? gpa.toFixed(2) : '0.00'}</div><div class="s-lbl">${t('infoGpa')}</div></div></div>
+    <div class="stat" style="--c:#2b6cb0"><div class="s-ico">⏱️</div>
+      <div><div class="s-val">${hours}</div><div class="s-lbl">${t('thHoursCol')}</div></div></div>
+    <div class="stat" style="--c:#c8a15a"><div class="s-ico">📚</div>
+      <div><div class="s-val">${myGrades.length}</div><div class="s-lbl">${t('thCredits')}</div></div></div>
+    <div class="stat" style="--c:#7c3aed"><div class="s-ico">⭐</div>
+      <div><div class="s-val">${totalPts.toFixed(1)}</div><div class="s-lbl">${t('thPoints')}</div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3>${t('cardStudentGrades')} — ${esc(s.name)}</h3>
+      <button class="btn btn-ghost btn-sm" onclick="printTranscript('${s.id}')">${t('cardTranscript')}</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>#</th><th>${t('thCode')}</th><th>${t('thCourseName')}</th><th>${t('thCredits')}</th>
+          <th>${t('thSemester')}</th><th>${t('thYear')}</th><th>${t('thGradeCol')}</th>
+          <th>${t('thPoints')}</th><th>${t('thActions')}</th>
+        </tr></thead>
+        <tbody>
+          ${myGrades.length ? myGrades.map((g, i) => {
+            const c = DB.courses.find(x => x.id === g.courseId);
+            return `<tr>
+              <td>${i+1}</td>
+              <td><b>${c ? esc(c.code) : '—'}</b></td>
+              <td>${c ? esc(c.name) : '—'}</td>
+              <td>${c ? c.credits : '—'}</td>
+              <td>${esc(getLocalized(SEMESTER_LIST, g.semester))}</td>
+              <td>${esc(g.year)}</td>
+              <td><span class="tag ${g.grade.startsWith('A')?'tag-green':g.grade==='F'?'tag-red':'tag-blue'}">${esc(g.grade)}</span></td>
+              <td><b>${Number(g.points).toFixed(1)}</b></td>
+              <td style="white-space:nowrap">
+                <button class="btn-icon" onclick="openGradeForm('${g.id}')">✏️</button>
+                <button class="btn-icon" onclick="deleteGrade('${g.id}')">🗑️</button>
+              </td>
+            </tr>`;
+          }).join('') : `<tr><td colspan="9" class="empty"><span class="e-ico">📝</span>${t('tNoGrades')}</td></tr>`}
+        </tbody>
+      </table>
+    </div>
+  </div>`}`;
+}
+
+function openGradeForm(id){
+  const g = id ? DB.grades.find(x => x.id === id) : null;
+  const s = DB.students.find(x => x.id === (g ? g.studentId : selectedStudentId));
+
+  showModal(g ? t('mEditGrade') : t('mAddGrade'), `
+    <form id="gradeForm" onsubmit="submitGrade(event, ${g ? `'${id}'` : 'null'})">
+      <div class="form-grid">
+        <div class="field full"><label>${t('fGradeStudent')}</label>
+          <input value="${esc(s.reg + ' — ' + s.name)}" disabled></div>
+        <div class="field full"><label>${t('fGradeCourse')} <span class="req">*</span></label>
+          <select name="courseId" required onchange="updatePointsPreview()" id="gradeCourse">
+            ${DB.courses.map(c => `<option value="${c.id}" ${g && g.courseId===c.id?'selected':''}>${esc(c.code)} — ${esc(c.name)} (${c.credits})</option>`).join('')}
+          </select></div>
+        <div class="field"><label>${t('fSemester')}</label>
+          <select name="semester">
+            ${SEMESTER_LIST.map(x => `<option value="${esc(x.val)}" ${g && g.semester===x.val?'selected':''}>${esc(LANG==='en'?x.en:x.ar)}</option>`).join('')}
+          </select></div>
+        <div class="field"><label>${t('fYear')}</label>
+          <input name="year" value="${esc(g ? g.year : (s ? s.year : DB.settings.year))}"></div>
+        <div class="field"><label>${t('fGradeLetter')} <span class="req">*</span></label>
+          <select name="grade" id="gradeLetter" required onchange="updatePointsPreview()">
+            ${GRADE_SCALE.map(x => `<option value="${x.g}" ${g && g.grade===x.g?'selected':''}>${x.g} (${x.pts.toFixed(1)})</option>`).join('')}
+          </select></div>
+        <div class="field"><label>${t('fGradePoints')}</label>
+          <input id="gradePoints" value="${g ? Number(g.points).toFixed(1) : '4.0'}" disabled></div>
+      </div>
+    </form>
+  `, `
+    <button class="btn btn-primary" onclick="document.getElementById('gradeForm').requestSubmit()">${t('btnSave')}</button>
+    <button class="btn btn-ghost" onclick="closeModal()">${t('btnCancel')}</button>
+  `);
+}
+
+function updatePointsPreview(){
+  const g = $('gradeLetter').value;
+  const pts = GRADE_SCALE.find(x => x.g === g).pts;
+  $('gradePoints').value = pts.toFixed(1);
+}
+
+function submitGrade(e, id){
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(e.target).entries());
+  const pts = GRADE_SCALE.find(x => x.g === data.grade).pts;
+  if(id){
+    const i = DB.grades.findIndex(g => g.id === id);
+    DB.grades[i] = {...DB.grades[i], ...data, points: pts};
+    toast(t('tGradeUpdated'));
+  }else{
+    const exists = DB.grades.find(g => g.studentId === selectedStudentId && g.courseId === data.courseId);
+    if(exists){ toast(t('tDupGrade'),'err'); return; }
+    DB.grades.push({id: uid('grd'), studentId: selectedStudentId, ...data, points: pts});
+    toast(t('tGradeAdded'));
+  }
+  saveDB(); closeModal(); render();
+}
+
+function deleteGrade(id){
+  if(!confirm(t('tConfirmDeleteGrade'))) return;
+  DB.grades = DB.grades.filter(g => g.id !== id);
+  saveDB(); render(); toast(t('tDeleted'),'warn');
+}
+
+function printTranscript(id){
+  const s = DB.students.find(x => x.id === id);
+  const gs = DB.grades.filter(g => g.studentId === s.id);
+  const {gpa, hours} = computeGPA(s.id);
+
+  printHTML(t('cardTranscript') + ' - ' + s.name, `
+    <div class="hd">
+      <h1>${esc(DB.settings.univ)} — ${esc(DB.settings.college)}</h1>
+      <p>${esc(DB.settings.dept)} — ${t('pTranscript')}</p>
+    </div>
+    <table>
+      <tr><th style="width:180px">${t('pStudentName')}</th><td>${esc(s.name)}</td>
+          <th style="width:150px">${t('pReg')}</th><td>${esc(s.reg)}</td></tr>
+      <tr><th>${t('pBranch')}</th><td>${esc(getDeptLabel(s.dept))}</td>
+          <th>${t('pProgram')}</th><td>${esc(getLocalized(DEGREE_LIST, s.degree))}</td></tr>
+    </table>
+    <table>
+      <thead><tr>
+        <th>#</th><th>${t('thCode')}</th><th>${t('thCourseName')}</th><th>${t('thCredits')}</th>
+        <th>${t('thSemester')}</th><th>${t('thGradeCol')}</th><th>${t('thPoints')}</th>
+      </tr></thead>
+      <tbody>
+        ${gs.map((g, i) => {
+          const c = DB.courses.find(x => x.id === g.courseId);
+          return `<tr><td>${i+1}</td><td>${c?esc(c.code):'—'}</td><td>${c?esc(c.name):'—'}</td>
+          <td>${c?c.credits:'—'}</td><td>${esc(getLocalized(SEMESTER_LIST, g.semester))} ${esc(g.year)}</td>
+          <td>${esc(g.grade)}</td><td>${Number(g.points).toFixed(1)}</td></tr>`;
+        }).join('')}
+      </tbody>
+    </table>
+    <table style="margin-top:14px">
+      <tr><th style="width:180px">${t('pTotalHours')}</th><td>${hours}</td>
+          <th style="width:180px">${t('pCumGpa')}</th><td><b>${gpa.toFixed(2)}</b></td></tr>
+    </table>
+    <p style="margin-top:44px;display:flex;justify-content:space-between;font-size:13px">
+      <span>${t('pDeptHead')}: ................................</span>
+      <span>${t('pDean')}: ................................</span>
+    </p>
+  `);
+}
+
+function viewThesis(){
+  const rows = DB.theses.map(th => {
+    const s = DB.students.find(x => x.id === th.studentId);
+    return {t: th, s};
+  }).filter(x => x.s);
+
+  const stageColors = ['tag-gray','tag-blue','tag-blue','tag-orange','tag-orange','tag-gold','tag-green'];
+
+  return `
+  <div class="toolbar">
+    <div class="search-box"><input placeholder="${esc(t('searchThesis'))}" oninput="filterThesis(this.value)"></div>
+    <div class="spacer"></div>
+    <button class="btn btn-primary" onclick="openThesisForm()">${t('btnAddThesis')}</button>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>${t('cardThesisLog')}</h3><span class="tag tag-gray">${rows.length}</span></div>
+    <div class="table-wrap">
+      <table id="thesisTable">
+        <thead><tr>
+          <th>#</th><th>${t('fThesisStudent')}</th><th>${t('thThesisTitle')}</th><th>${t('thCommittee')}</th>
+          <th>${t('thStage')}</th><th>${t('thProgress')}</th><th>${t('thActions')}</th>
+        </tr></thead>
+        <tbody>
+          ${rows.length ? rows.map(({t:th, s}, i) => `
+            <tr data-search="${esc((s.name + ' ' + th.titleAr + ' ' + s.dept).toLowerCase())}">
+              <td>${i+1}</td>
+              <td><b>${esc(s.name)}</b><br><small style="color:var(--muted)">${esc(s.reg)}</small></td>
+              <td style="max-width:340px">
+                <div style="font-weight:600">${esc(LANG==='en' && th.titleEn ? th.titleEn : th.titleAr)}</div>
+                <small style="color:var(--muted)">${esc(getDeptLabel(s.dept))}</small>
+              </td>
+              <td>${esc(th.committee || '—')}</td>
+              <td><span class="tag ${stageColors[STAGE_LIST.findIndex(x=>x.val===th.stage)] || 'tag-gray'}">${esc(getLocalized(STAGE_LIST, th.stage))}</span></td>
+              <td style="min-width:130px">
+                <div style="display:flex;align-items:center;gap:8px">
+                  <div class="progress" style="flex:1"><i style="width:${th.progress}%"></i></div>
+                  <b style="font-size:12px;color:var(--primary)">${th.progress}%</b>
+                </div>
+              </td>
+              <td style="white-space:nowrap">
+                <button class="btn-icon" onclick="openThesisForm('${th.id}')">✏️</button>
+                <button class="btn-icon" onclick="deleteThesis('${th.id}')">🗑️</button>
+              </td>
+            </tr>`).join('') : `<tr><td colspan="7" class="empty"><span class="e-ico">📄</span>${t('tNoThesis')}</td></tr>`}
+        </tbody>
+      </table>
+    </div>
+  </div>`;
+}
+
+function filterThesis(v){
+  const q = v.trim().toLowerCase();
+  document.querySelectorAll('#thesisTable tbody tr[data-search]').forEach(tr => {
+    tr.style.display = tr.dataset.search.includes(q) ? '' : 'none';
+  });
+}
+
+function openThesisForm(id){
+  const th = id ? DB.theses.find(x => x.id === id) : null;
+  showModal(th ? t('mEditThesis') : t('mAddThesis'), `
+    <form id="thesisForm" onsubmit="submitThesis(event, ${th ? `'${id}'` : 'null'})">
+      <div class="form-grid">
+        <div class="field full"><label>${t('fThesisStudent')} <span class="req">*</span></label>
+          <select name="studentId" required>
+            <option value="">${t('fSelectStudent')}</option>
+            ${DB.students.map(s => `<option value="${s.id}" ${th && th.studentId===s.id?'selected':''}>${esc(s.reg)} — ${esc(s.name)}</option>`).join('')}
+          </select></div>
+        <div class="field full"><label>${t('fThesisTitleAr')} <span class="req">*</span></label>
+          <textarea name="titleAr" rows="2" required>${esc(th ? th.titleAr : '')}</textarea></div>
+        <div class="field full"><label>${t('fThesisTitleEn')}</label>
+          <input name="titleEn" value="${esc(th ? th.titleEn : '')}" dir="ltr"></div>
+        <div class="field"><label>${t('fStage')}</label>
+          <select name="stage" id="thesisStage" onchange="syncStageProgress()">
+            ${STAGE_LIST.map(x => `<option value="${esc(x.val)}" ${th && th.stage===x.val?'selected':''}>${esc(LANG==='en'?x.en:x.ar)}</option>`).join('')}
+          </select></div>
+        <div class="field"><label>${t('fProgress')}</label>
+          <input type="number" name="progress" id="thesisProgress" min="0" max="100" value="${th ? th.progress : 10}"></div>
+        <div class="field"><label>${t('fStartDate')}</label>
+          <input type="date" name="startDate" value="${esc(th ? th.startDate : '')}"></div>
+        <div class="field"><label>${t('fProtocolDate')}</label>
+          <input type="date" name="protocolDate" value="${esc(th ? th.protocolDate : '')}"></div>
+        <div class="field"><label>${t('fDefenseDate')}</label>
+          <input type="date" name="defenseDate" value="${esc(th ? th.defenseDate : '')}"></div>
+        <div class="field"><label>${t('fThesisStatus')}</label>
+          <select name="status">
+            ${THESIS_STATUS_LIST.map(x => `<option value="${esc(x.val)}" ${th && th.status===x.val?'selected':''}>${esc(LANG==='en'?x.en:x.ar)}</option>`).join('')}
+          </select></div>
+        <div class="field full"><label>${t('fCommittee')}</label>
+          <input name="committee" value="${esc(th ? th.committee : '')}"></div>
+      </div>
+    </form>
+  `, `
+    <button class="btn btn-primary" onclick="document.getElementById('thesisForm').requestSubmit()">${t('btnSave')}</button>
+    <button class="btn btn-ghost" onclick="closeModal()">${t('btnCancel')}</button>
+  `);
+}
+
+function syncStageProgress(){
+  const st = $('thesisStage').value;
+  const item = STAGE_LIST.find(x => x.val === st);
+  if(item) $('thesisProgress').value = item.progress;
+}
+
+function submitThesis(e, id){
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(e.target).entries());
+  data.progress = Math.max(0, Math.min(100, Number(data.progress) || 0));
+  if(!data.studentId){ toast(t('tSelectStudent'),'err'); return; }
+  if(id){
+    const i = DB.theses.findIndex(x => x.id === id);
+    DB.theses[i] = {...DB.theses[i], ...data};
+    toast(t('tThesisUpdated'));
+  }else{
+    if(DB.theses.some(x => x.studentId === data.studentId)){ toast(t('tDupThesis'),'err'); return; }
+    DB.theses.push({id: uid('ths'), ...data});
+    toast(t('tThesisAdded'));
+  }
+  saveDB(); closeModal(); render();
+}
+
+function deleteThesis(id){
+  if(!confirm(t('tConfirmDeleteThesis'))) return;
+  DB.theses = DB.theses.filter(x => x.id !== id);
+  saveDB(); render(); toast(t('tDeleted'),'warn');
+}
+
+function viewSupervisors(){
+  return `
+  <div class="toolbar">
+    <div class="spacer"></div>
+    <button class="btn btn-primary" onclick="openSupervisorForm()">${t('btnAddSupervisor')}</button>
+  </div>
+  <div class="card">
+    <div class="card-head"><h3>${t('cardSupervisorsLog')}</h3><span class="tag tag-gray">${DB.supervisors.length}</span></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>#</th><th>${t('thName')}</th><th>${t('thDegreeCol')}</th><th>${t('thBranch')}</th>
+          <th>${t('thSpecialty')}</th><th>${t('thEmail')}</th><th>${t('thPhone')}</th>
+          <th>${t('thStudents')}</th><th>${t('thActions')}</th>
+        </tr></thead>
+        <tbody>
+          ${DB.supervisors.length ? DB.supervisors.map((x, i) => {
+            const cnt = DB.students.filter(s => s.supId === x.id).length;
+            const full = cnt >= (x.max || 5);
+            return `<tr>
+              <td>${i+1}</td>
+              <td><b>${esc(x.title)} ${esc(x.name)}</b></td>
+              <td>${esc(getLocalized(TITLE_LIST, x.title))}</td>
+              <td>${esc(getDeptLabel(x.dept))}</td>
+              <td>${esc(x.specialty || '—')}</td>
+              <td style="font-size:12px" dir="ltr">${esc(x.email || '—')}</td>
+              <td dir="ltr">${esc(x.phone || '—')}</td>
+              <td><span class="tag ${full?'tag-red':'tag-green'}">${cnt} / ${x.max || 5}</span></td>
+              <td style="white-space:nowrap">
+                <button class="btn-icon" onclick="openSupervisorForm('${x.id}')">✏️</button>
+                <button class="btn-icon" onclick="deleteSupervisor('${x.id}')">🗑️</button>
+              </td>
+            </tr>`;
+          }).join('') : `<tr><td colspan="9" class="empty"><span class="e-ico">👨‍🏫</span>${t('tNoSupervisors')}</td></tr>`}
+        </tbody>
+      </table>
+    </div>
+  </div>`;
+}
+
+function openSupervisorForm(id){
+  const x = id ? DB.supervisors.find(v => v.id === id) : null;
+  showModal(x ? t('mEditSupervisor') : t('mAddSupervisor'), `
+    <form id="supForm" onsubmit="submitSupervisor(event, ${x ? `'${id}'` : 'null'})">
+      <div class="form-grid">
+        <div class="field"><label>${t('fSupTitle')}</label>
+          <select name="title">
+            ${TITLE_LIST.map(tt => `<option value="${esc(tt.val)}" ${x && x.title===tt.val?'selected':''}>${esc(LANG==='en'?tt.en:tt.ar)}</option>`).join('')}
+          </select></div>
+        <div class="field"><label>${t('fSupName')} <span class="req">*</span></label>
+          <input name="name" required value="${esc(x ? x.name : '')}"></div>
+        <div class="field"><label>${t('fBranch')}</label>
+          <select name="dept">
+            ${DEPARTMENTS.map(d => `<option value="${esc(d.ar)}" ${x && x.dept===d.ar?'selected':''}>${esc(LANG==='en'?d.en:d.ar)}</option>`).join('')}
+          </select></div>
+        <div class="field"><label>${t('fSupSpecialty')}</label>
+          <input name="specialty" value="${esc(x ? x.specialty : '')}"></div>
+        <div class="field"><label>${t('fEmail')}</label>
+          <input type="email" name="email" dir="ltr" value="${esc(x ? x.email : '')}"></div>
+        <div class="field"><label>${t('fPhone')}</label>
+          <input name="phone" dir="ltr" value="${esc(x ? x.phone : '')}"></div>
+        <div class="field"><label>${t('fSupMax')}</label>
+          <input type="number" name="max" min="1" value="${x ? (x.max || 5) : 5}"></div>
+      </div>
+    </form>
+  `, `
+    <button class="btn btn-primary" onclick="document.getElementById('supForm').requestSubmit()">${t('btnSave')}</button>
+    <button class="btn btn-ghost" onclick="closeModal()">${t('btnCancel')}</button>
+  `);
+}
+
+function submitSupervisor(e, id){
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(e.target).entries());
+  data.max = Number(data.max) || 5;
+  if(id){
+    const i = DB.supervisors.findIndex(x => x.id === id);
+    DB.supervisors[i] = {...DB.supervisors[i], ...data};
+    toast(t('tSupervisorUpdated'));
+  }else{
+    DB.supervisors.push({id: uid('sup'), ...data});
+    toast(t('tSupervisorAdded'));
+  }
+  saveDB(); closeModal(); render();
+}
+
+function deleteSupervisor(id){
+  const x = DB.supervisors.find(v => v.id === id);
+  if(!confirm(`${t('tConfirmDeleteSupervisor')}: ${x.name}؟`)) return;
+  DB.supervisors = DB.supervisors.filter(v => v.id !== id);
+  DB.students.forEach(s => { if(s.supId === id) s.supId = ''; });
+  saveDB(); render(); toast(t('tDeleted'),'warn');
+}
+
+let reportFilter = {dept:'', status:'', year:''};
+
+function viewReports(){
+  const years = [...new Set(DB.students.map(s => s.year))].sort();
+  const list = DB.students.filter(s =>
+    (!reportFilter.dept   || s.dept === reportFilter.dept) &&
+    (!reportFilter.status || s.status === reportFilter.status) &&
+    (!reportFilter.year   || s.year === reportFilter.year)
+  );
+  let sumGpa = 0, cntGpa = 0;
+  list.forEach(s => { const g = computeGPA(s.id).gpa; if(g > 0){ sumGpa += g; cntGpa++; } });
+  const avg = cntGpa ? sumGpa / cntGpa : 0;
+
+  return `
+  <div class="toolbar">
+    <select style="width:auto;min-width:170px;flex:1" onchange="reportFilter.dept=this.value;render()">
+      <option value="">${t('filterAllBranches')}</option>
+      ${DEPARTMENTS.map(d => `<option value="${esc(d.ar)}" ${reportFilter.dept===d.ar?'selected':''}>${esc(LANG==='en'?d.en:d.ar)}</option>`).join('')}
+    </select>
+    <select style="width:auto;min-width:130px;flex:1" onchange="reportFilter.status=this.value;render()">
+      <option value="">${t('filterAllStatuses')}</option>
+      ${STATUS_LIST.map(s => `<option value="${esc(s.val)}" ${reportFilter.status===s.val?'selected':''}>${esc(LANG==='en'?s.en:s.ar)}</option>`).join('')}
+    </select>
+    <select style="width:auto;min-width:130px;flex:1" onchange="reportFilter.year=this.value;render()">
+      <option value="">${t('filterAllYears')}</option>
+      ${years.map(y => `<option ${reportFilter.year===y?'selected':''}>${esc(y)}</option>`).join('')}
+    </select>
+    <div class="spacer"></div>
+    <button class="btn btn-ghost" onclick="exportCSV('filtered')">${t('btnExportCsv')}</button>
+    <button class="btn btn-primary" onclick="printReport()">${t('btnPrint')}</button>
+  </div>
+
+  <div class="stats-grid" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+    <div class="stat" style="--c:#0d6e5f"><div class="s-ico">👥</div>
+      <div><div class="s-val">${list.length}</div><div class="s-lbl">${t('repStudentsCount')}</div></div></div>
+    <div class="stat" style="--c:#1e8e5a"><div class="s-ico">✅</div>
+      <div><div class="s-val">${list.filter(s=>s.status==='نشط').length}</div><div class="s-lbl">${t('repActive')}</div></div></div>
+    <div class="stat" style="--c:#2b6cb0"><div class="s-ico">🏅</div>
+      <div><div class="s-val">${list.filter(s=>s.status==='متخرج').length}</div><div class="s-lbl">${t('repGraduated')}</div></div></div>
+    <div class="stat" style="--c:#c8a15a"><div class="s-ico">📈</div>
+      <div><div class="s-val">${avg.toFixed(2)}</div><div class="s-lbl">${t('repAvgGpa')}</div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3>${t('cardDetailedReport')}</h3><span class="tag tag-gray">${list.length}</span></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>#</th><th>${t('thReg')}</th><th>${t('thName')}</th><th>${t('thBranch')}</th>
+          <th>${t('thProgram')}</th><th>${t('thYear')}</th><th>${t('thHoursCol')}</th>
+          <th>${t('thGpa')}</th><th>${t('thStage')}</th><th>${t('thStatus')}</th>
+        </tr></thead>
+        <tbody>
+          ${list.length ? list.map((s, i) => {
+            const {gpa, hours} = computeGPA(s.id);
+            const th = DB.theses.find(x => x.studentId === s.id);
+            return `<tr>
+              <td>${i+1}</td><td><b>${esc(s.reg)}</b></td><td>${esc(s.name)}</td>
+              <td>${esc(getDeptLabel(s.dept))}</td>
+              <td>${esc(getLocalized(DEGREE_LIST, s.degree))}</td><td>${esc(s.year)}</td>
+              <td>${hours}</td>
+              <td><b style="color:var(--primary)">${gpa ? gpa.toFixed(2) : '—'}</b></td>
+              <td>${th ? esc(getLocalized(STAGE_LIST, th.stage)) : '—'}</td>
+              <td>${statusTag(s.status)}</td>
+            </tr>`;
+          }).join('') : `<tr><td colspan="10" class="empty">${t('tNoMatching')}</td></tr>`}
+        </tbody>
+      </table>
+    </div>
+  </div>`;
+}
+
+function printReport(){
+  const list = DB.students.filter(s =>
+    (!reportFilter.dept   || s.dept === reportFilter.dept) &&
+    (!reportFilter.status || s.status === reportFilter.status) &&
+    (!reportFilter.year   || s.year === reportFilter.year)
+  );
+  printHTML(t('pReport'), `
+    <div class="hd">
+      <h1>${esc(DB.settings.univ)} — ${esc(DB.settings.college)}</h1>
+      <p>${esc(DB.settings.dept)} — ${t('pReport')} ${reportFilter.dept ? '| ' + t('pReportBranch') + ': ' + esc(getDeptLabel(reportFilter.dept)) : ''}</p>
+      <p style="font-size:12px">${t('pPrintDate')}: ${new Date().toLocaleDateString(LANG==='en'?'en-GB':'ar-EG')}</p>
+    </div>
+    <table>
+      <thead><tr>
+        <th>#</th><th>${t('thReg')}</th><th>${t('thName')}</th><th>${t('thBranch')}</th>
+        <th>${t('thProgram')}</th><th>${t('thHoursCol')}</th><th>${t('thGpa')}</th><th>${t('thStatus')}</th>
+      </tr></thead>
+      <tbody>
+        ${list.map((s, i) => {
+          const {gpa, hours} = computeGPA(s.id);
+          return `<tr><td>${i+1}</td><td>${esc(s.reg)}</td><td>${esc(s.name)}</td>
+          <td>${esc(getDeptLabel(s.dept))}</td><td>${esc(getLocalized(DEGREE_LIST, s.degree))}</td>
+          <td>${hours}</td><td><b>${gpa ? gpa.toFixed(2) : '—'}</b></td>
+          <td>${esc(statusLabel(s.status))}</td></tr>`;
+        }).join('')}
+      </tbody>
+    </table>
+    <p style="margin-top:20px;font-size:13px"><b>${t('pTotalStudents')}: ${list.length}</b></p>
+  `);
+}
+
+function viewSettings(){
+  return `
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px" class="settings-cols">
+    <div class="card">
+      <div class="card-head"><h3>${t('cardInstitution')}</h3></div>
+      <div class="card-body">
+        <div class="field" style="margin-bottom:13px"><label>${t('fUniv')}</label>
+          <input id="setUniv" value="${esc(DB.settings.univ)}"></div>
+        <div class="field" style="margin-bottom:13px"><label>${t('fCollege')}</label>
+          <input id="setCollege" value="${esc(DB.settings.college)}"></div>
+        <div class="field" style="margin-bottom:13px"><label>${t('fAdmin')}</label>
+          <input id="setDept" value="${esc(DB.settings.dept)}"></div>
+        <div class="field" style="margin-bottom:16px"><label>${t('fCurrentYear')}</label>
+          <input id="setYear" value="${esc(DB.settings.year)}"></div>
+        <button class="btn btn-primary" onclick="saveSettings()">${t('btnSaveSettings')}</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h3>${t('cardBackup')}</h3></div>
+      <div class="card-body">
+        <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.8">${t('settingsInfo')}</p>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <button class="btn btn-primary" onclick="downloadSystem()">${t('btnDownloadSystem')}</button>
+          <button class="btn btn-ghost" onclick="exportJSON()">${t('btnExportJson')}</button>
+          <button class="btn btn-ghost" onclick="document.getElementById('importFile').click()">${t('btnImportJson')}</button>
+          <input type="file" id="importFile" accept=".json" style="display:none" onchange="importJSON(event)">
+          <button class="btn btn-ghost" onclick="exportCSV('all')">${t('btnExportAllCsv')}</button>
+          <hr style="border:0;border-top:1px solid var(--border);margin:6px 0">
+          <button class="btn btn-warn" onclick="resetData()">${t('btnResetData')}</button>
+          <button class="btn btn-danger" onclick="clearAll()">${t('btnClearAll')}</button>
+          <hr style="border:0;border-top:1px solid var(--border);margin:6px 0">
+          <button class="btn btn-ghost" onclick="exitToSplash()">🚪 ${t('exitToSplash')}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:18px">
+    <div class="card-head"><h3>${t('cardAbout')}</h3></div>
+    <div class="card-body">
+      <div class="info-grid">
+        <div class="info-item"><span>${t('infoStudentCount')}</span><b>${DB.students.length}</b></div>
+        <div class="info-item"><span>${t('infoCourseCount')}</span><b>${DB.courses.length}</b></div>
+        <div class="info-item"><span>${t('infoGradeCount')}</span><b>${DB.grades.length}</b></div>
+        <div class="info-item"><span>${t('infoThesisCount')}</span><b>${DB.theses.length}</b></div>
+        <div class="info-item"><span>${t('infoSupervisorCount')}</span><b>${DB.supervisors.length}</b></div>
+        <div class="info-item"><span>${t('infoDataSize')}</span><b>${(JSON.stringify(DB).length/1024).toFixed(1)} KB</b></div>
+      </div>
+    </div>
+  </div>
+  <style>@media(max-width:900px){.settings-cols{grid-template-columns:1fr !important}}</style>`;
+}
+
+function saveSettings(){
+  DB.settings.univ = $('setUniv').value.trim() || t('tUnivFallback');
+  DB.settings.college = $('setCollege').value.trim() || t('tCollegeFallback');
+  DB.settings.dept = $('setDept').value.trim() || t('tDeptFallback');
+  DB.settings.year = $('setYear').value.trim() || t('tYearFallback');
+  saveDB();
+  $('yearBadge').textContent = t('yearBadge') + ' ' + DB.settings.year;
+  toast(t('tSettingsSaved'));
+}
+
+function exportJSON(){
+  const blob = new Blob([JSON.stringify(DB, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `backup_internal_medicine_${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast(t('tExportJson'));
+}
+
+function importJSON(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try{
+      const data = JSON.parse(ev.target.result);
+      if(!data.students || !data.courses) throw new Error(t('tInvalidFile'));
+      if(!confirm(t('tConfirmImport'))) return;
+      DB = data;
+      if(!DB.settings) DB.settings = {univ:'جامعة بنغازي', college:'كلية الطب', dept:'قسم الباطنة العامة - الدراسات العليا', year:'2025/2026', theme:'light', lang:LANG};
+      saveDB();
+      if(DB.settings.lang) { LANG = DB.settings.lang; applyLang(); }
+      navigate('dashboard');
+      toast(t('tImportSuccess'));
+    }catch(err){ toast(t('tImportFail') + ': ' + err.message, 'err'); }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+}
+
+function exportCSV(scope){
+  let rows = [];
+  if(scope === 'students'){
+    rows = [[t('thReg'),t('thName'),t('thBranch'),t('thProgram'),t('thYear'),t('thPhone'),t('thEmail'),t('thStatus')]];
+    DB.students.forEach(s => rows.push([s.reg, s.name, getDeptLabel(s.dept), getLocalized(DEGREE_LIST, s.degree), s.year, s.phone, s.email, statusLabel(s.status)]));
+  }else if(scope === 'filtered'){
+    rows = [[t('thReg'),t('thName'),t('thBranch'),t('thProgram'),t('thYear'),t('thHoursCol'),t('thGpa'),t('thStatus')]];
+    DB.students.filter(s =>
+      (!reportFilter.dept || s.dept === reportFilter.dept) &&
+      (!reportFilter.status || s.status === reportFilter.status) &&
+      (!reportFilter.year || s.year === reportFilter.year)
+    ).forEach(s => {
+      const g = computeGPA(s.id);
+      rows.push([s.reg, s.name, getDeptLabel(s.dept), getLocalized(DEGREE_LIST, s.degree), s.year, g.hours, g.gpa.toFixed(2), statusLabel(s.status)]);
+    });
+  }else{
+    rows = [['Type','ID','Info1','Info2','Info3']];
+    DB.students.forEach(s => rows.push(['Student', s.reg, s.name, getDeptLabel(s.dept), statusLabel(s.status)]));
+    DB.courses.forEach(c => rows.push(['Course', c.code, c.name, getDeptLabel(c.dept), c.credits]));
+    DB.supervisors.forEach(x => rows.push(['Supervisor', x.name, getDeptLabel(x.dept), x.email, x.phone]));
+  }
+  const csv = '\ufeff' + rows.map(r => r.map(v => `"${String(v ?? '').replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], {type:'text/csv;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `internal_medicine_data_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast(t('tExportCsv'));
+}
+
+function resetData(){
+  if(!confirm(t('tResetConfirm'))) return;
+  DB = seedDB();
+  DB.settings.lang = LANG;
+  saveDB();
+  $('yearBadge').textContent = t('yearBadge') + ' ' + DB.settings.year;
+  navigate('dashboard');
+  toast(t('tResetDone'));
+}
+
+function clearAll(){
+  if(!confirm(t('tClearConfirm1'))) return;
+  if(!confirm(t('tClearConfirm2'))) return;
+  DB = {students:[], courses:[], grades:[], supervisors:[], theses:[], settings:{...DB.settings}};
+  saveDB(); navigate('dashboard');
+  toast(t('tClearDone'),'warn');
+}
+
+function showModal(title, body, footer){
+  $('modalTitle').textContent = title;
+  $('modalBody').innerHTML = body;
+  $('modalFoot').innerHTML = footer || '';
+  $('overlay').classList.add('open');
+  $('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(){
+  $('overlay').classList.remove('open');
+  $('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+
+function printHTML(title, bodyHtml){
+  const w = window.open('', '_blank', 'width=900,height=700');
+  if(!w){ toast(t('tPrintBlocked'),'err'); return; }
+  const dir = LANG === 'ar' ? 'rtl' : 'ltr';
+  w.document.write(`<!DOCTYPE html><html lang="${LANG}" dir="${dir}"><head><meta charset="utf-8">
+    <title>${esc(title)}</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+      body{font-family:'Cairo',Tahoma,sans-serif;padding:26px;direction:${dir};color:#16241f}
+      h1{font-size:20px;margin:0 0 4px;color:#0d6e5f}
+      h3{font-size:15px}
+      .hd{text-align:center;margin-bottom:18px;border-bottom:3px double #0d6e5f;padding-bottom:12px}
+      .hd p{margin:3px 0;font-size:13px;color:#555}
+      table{width:100%;border-collapse:collapse;margin-top:12px}
+      th,td{border:1px solid #9aa;padding:8px 9px;text-align:${dir==='rtl'?'right':'left'};font-size:12.5px}
+      th{background:#0d6e5f;color:#fff;font-weight:700}
+      tbody tr:nth-child(even){background:#f4f9f8}
+      @media print{ body{padding:0} }
+    </style></head><body>${bodyHtml}</body></html>`);
+  w.document.close();
+  setTimeout(() => { try{ w.focus(); w.print(); }catch(e){} }, 600);
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
